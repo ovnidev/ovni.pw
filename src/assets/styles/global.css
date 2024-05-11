@@ -1,0 +1,83 @@
+:root {
+    --primary: #2DE1CC;
+    --secondary: #7C1FF1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus, *:focus-visible {
+    outline: none !important;
+}
+
+:global(html) {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :global(html) {
+        scroll-behavior: auto;
+    }
+}
+
+@property --num {
+    syntax: "<integer>";
+    initial-value: 2541;
+    inherits: false;
+}
+
+html {
+    position: relative;
+    scroll-behavior: smooth;
+    @apply min-h-screen
+}
+
+html body {
+    font-family: 'Inter', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    word-break: break-word;
+    overflow-x: hidden;
+    @apply bg-white dark:text-white text-darker subpixel-antialiased selection:bg-[#335d712e] selection:text-[#30393f] min-h-screen
+}
+
+html.dark body {
+    @apply bg-darker text-white selection:bg-[#cad2db38] selection:text-white
+}
+
+strong, b {
+    @apply font-inter-bold
+}
+
+/* Scroll */
+
+html.dark *::-webkit-scrollbar-track {
+    @apply bg-darker
+}
+
+html.dark *::-webkit-scrollbar-thumb {
+    @apply !bg-white/90 rounded-xl
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    @apply bg-white
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply bg-darker/90 rounded-xl
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

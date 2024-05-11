@@ -1,0 +1,27 @@
+.sidebar {
+    @apply flex h-screen w-16 flex-col justify-between border-e border-white/5 bg-black/30 overflow-y-auto
+}
+
+.sidebar .logo {
+    @apply items-center justify-center text-center py-3
+}
+
+.sidebar .logo > .text {
+    @apply block text-[11px]
+}
+
+.sidebar .menu {
+    @apply border-t border-white/5
+}
+
+.sidebar .menu button.button {
+    @apply w-full relative text-[28px] flex justify-center rounded border hover:!border-primary hover:!bg-primary/30 duration-300 border-white/10 bg-black/10 px-2 py-2 text-white
+}
+
+.sidebar .menu button.button.active {
+    @apply drop-shadow-[0px_0px_20px_#7c1ff1] w-full relative text-[28px] flex justify-center rounded border border-primary bg-primary/30 px-2 py-2 text-white
+}
+
+.sidebar .menu button.button .icon {
+    @apply text-[24px]
+}

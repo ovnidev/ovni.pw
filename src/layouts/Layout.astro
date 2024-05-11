@@ -1,0 +1,36 @@
+---
+
+	interface Props { title: string }
+
+	const { title } = Astro.props
+	
+	import '@styles/base.css'
+	import '@styles/fonts.css'
+	import '@styles/sidebar.css'
+	import '@styles/global.css'
+	import '@styles/modal.css'
+	import '@styles/folder.css'
+	import '@styles/password.css'
+
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+	<head>
+
+		<meta charset="UTF-8" />
+
+		<title>{ title }</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+
+		<link rel="shortcut icon" type="image/svg+xml" href={ `/favicon.svg?v=1` } />
+		<link rel="stylesheet" type="text/css" href="/libs/tabler-icons.min.css" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

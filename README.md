@@ -1,1 +1,1 @@
-# pass.ovni.dev
+# ovni.pw

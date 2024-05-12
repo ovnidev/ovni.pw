@@ -106,7 +106,7 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
                 <div className="md:grid grid-cols-3 gap-5">
                     { masterPassword !== '' && (
                         <>
-                            <div className="bg-white/[1%] border text-center border-white/5 rounded-[4px] p-5 pb-8 md:mb-0 mb-5">
+                            <div className="bg-white border-darker/10 dark:bg-white/[1%] border text-center dark:border-white/5 rounded-[4px] p-5 pb-8 md:mb-0 mb-5">
                                 <div className="font-inter-black text-[50px]">
                                     { passwordCount }
                                 </div>
@@ -114,7 +114,7 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
                                     { passwordCount === 1 ? 'Password' : 'Passwords' }
                                 </div>
                             </div>
-                            <div className="bg-white/[1%] border text-center border-white/5 rounded-[4px] p-5 pb-8 md:mb-0 mb-5">
+                            <div className="bg-white border-darker/10 dark:bg-white/[1%] border text-center dark:border-white/5 rounded-[4px] p-5 pb-8 md:mb-0 mb-5">
                                 <div className="font-inter-black text-[50px]">
                                     { folderCount }
                                 </div>
@@ -122,7 +122,7 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
                                     { folderCount === 1 ? 'Folder' : 'Folders' }
                                 </div>
                             </div>
-                            <div className="bg-white/[1%] border text-center border-white/5 rounded-[4px] p-5 pb-8">
+                            <div className="bg-white border-darker/10 dark:bg-white/[1%] border text-center dark:border-white/5 rounded-[4px] p-5 pb-8">
                                 <div className="font-inter-black text-[50px]">
                                     { alphabetCount }
                                 </div>

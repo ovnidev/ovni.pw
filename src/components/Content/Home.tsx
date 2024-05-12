@@ -77,7 +77,7 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
                 { masterPassword === '' && (
                     <form
                         onSubmit={ handleSubmit }
-                        className="dark:border-white/5 rounded-[4px] border-darker/10 dark:bg-white/[0.01] bg-white border md:px-20 md:py-10 md:w-min md:min-w-[600px] mx-auto md:mt-[200px] p-5"
+                        className="dark:border-white/5 rounded-[4px] border-darker/10 dark:bg-white/[0.01] bg-white border md:px-20 md:py-10 md:w-min md:min-w-[600px] mx-auto md:mt-[130px] p-5"
                     >
                         <h2
                             className="text-[18px] md:text-[24px] font-inter-black text-center mb-5"

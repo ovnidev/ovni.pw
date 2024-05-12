@@ -1,6 +1,10 @@
 import { getStorage, setStorage } from "@logic/storage"
 
-export const getPasswordCount = () => getStorage('passwords').length
+export const getPasswordCount = () => {
+    const passwords = getStorage('passwords')
+    if(!passwords || passwords.length === 0) return 0
+    return passwords.length
+}
 
 export const getPasswordList = (fid: string) => {
 

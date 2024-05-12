@@ -1,5 +1,7 @@
 import { getStorage, setStorage } from "@logic/storage"
 
+export const getPasswordCount = () => getStorage('passwords').length
+
 export const getPasswordList = (fid: string) => {
 
     const passwords = getStorage('passwords')
@@ -29,7 +31,7 @@ export const getPassword = (id: string) => {
 
 }
 
-export const createPassword = (name: string, identifier: string, folder: string) => {
+export const createPassword = (name: string, identifier: string, alphabet: string, length: number, folder: string) => {
 
     let passwords = getStorage('passwords')
 
@@ -39,6 +41,8 @@ export const createPassword = (name: string, identifier: string, folder: string)
         pid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
         name: name,
         identifier: identifier,
+        alphabet: alphabet,
+        length: length,
         folder: folder
     }
 
@@ -48,7 +52,7 @@ export const createPassword = (name: string, identifier: string, folder: string)
     
 }
 
-export const updatePassword = (id: string, name: string, identifier: string, folder: string) => {
+export const updatePassword = (id: string, name: string, identifier: string, alphabet: string, length: number, folder: string) => {
 
     const passwords = getStorage('passwords')
 
@@ -56,6 +60,8 @@ export const updatePassword = (id: string, name: string, identifier: string, fol
         if(passwords[index].pid === id) {
             passwords[index].name = name
             passwords[index].identifier = identifier
+            passwords[index].alphabet = alphabet
+            passwords[index].length = length
             passwords[index].folder = folder
             break
         }

@@ -1,15 +1,29 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { openModal } from "@logic/modal"
 import Modal from "@component/UI/Modal/Modal"
+
+import { getPasswordCount } from "@logic/password"
+import { getFolderCount } from "@logic/folder"
+import { getAlphabetCount } from "@logic/alphabet"
 
 export default function Main(props: { masterPassword: string, onMasterPassword: Function }) {
 
     const { masterPassword, onMasterPassword } = props
 
+    const [ passwordCount, setPasswordCount ] = useState(0)
+    const [ folderCount, setFolderCount ] = useState(0)
+    const [ alphabetCount, setAlphabetCount ] = useState(0)
+
     const handleSubmit = (event: any) => {
         event.preventDefault()
         onMasterPassword(event.target.password.value)
     }
+
+    useEffect(() => {
+        setPasswordCount(getPasswordCount())
+        setFolderCount(getFolderCount())
+        setAlphabetCount(getAlphabetCount())    
+    }, [])
 
     return (
         <>
@@ -89,11 +103,37 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
 
                 )}
 
-                { masterPassword !== '' && (
-                    <>
-                        a
-                    </>
-                )}
+                <div className="md:grid grid-cols-3 gap-5">
+                    { masterPassword !== '' && (
+                        <>
+                            <div className="bg-white/[1%] border text-center border-white/5 rounded-[4px] p-5 pb-8 md:mb-0 mb-5">
+                                <div className="font-inter-black text-[50px]">
+                                    { passwordCount }
+                                </div>
+                                <div className="text-[18px]">
+                                    { passwordCount === 1 ? 'Password' : 'Passwords' }
+                                </div>
+                            </div>
+                            <div className="bg-white/[1%] border text-center border-white/5 rounded-[4px] p-5 pb-8 md:mb-0 mb-5">
+                                <div className="font-inter-black text-[50px]">
+                                    { folderCount }
+                                </div>
+                                <div className="text-[18px]">
+                                    { folderCount === 1 ? 'Folder' : 'Folders' }
+                                </div>
+                            </div>
+                            <div className="bg-white/[1%] border text-center border-white/5 rounded-[4px] p-5 pb-8">
+                                <div className="font-inter-black text-[50px]">
+                                    { alphabetCount }
+                                </div>
+                                <div className="text-[18px]">
+                                    { alphabetCount === 1 ? 'Alphabet' : 'Alphabets' }
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </div>
+
 
             </div>
 

@@ -83,7 +83,7 @@ export default function Main(props: { folderId: string, onUpdate: Function }) {
                         type="submit"
                         className="default"
                     >
-                        Update folder
+                        Save
                     </button>
                 </div>
 

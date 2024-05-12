@@ -3,7 +3,7 @@
 }
 
 .page .head {
-    @apply p-5 border-b border-darker/5 dark:border-white/5 w-full dark:bg-black/10 bg-white/70
+    @apply p-5 border-b border-darker/5 dark:border-white/5 w-full dark:bg-black/10 bg-white/70 relative
 }
 
 .page .head .title {
@@ -15,7 +15,7 @@
 }
 
 .page .head .buttons {
-    @apply absolute right-[25px] top-[25px]
+    @apply absolute right-[25px] top-1/2 mt-[-20px]
 }
 
 .page .head button.btn {

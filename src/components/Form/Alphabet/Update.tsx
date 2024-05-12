@@ -70,7 +70,7 @@ export default function Main(props: { alphabetId: string, onUpdate: Function }) 
 
                         <div>
                             <label htmlFor="identifier">
-                                Identifier <Info text="This will be used to generate the password." />
+                                Identifier <Info text="If you change this, the generated passwords will change" />
                             </label>
                             <input
                                 type="text"
@@ -86,7 +86,7 @@ export default function Main(props: { alphabetId: string, onUpdate: Function }) 
 
                     <div className="mb-2">
                         <label htmlFor="characters">
-                            Characters <Info text="This will be used to generate the password." />
+                            Characters <Info text="If you change this, the generated passwords will change" />
                         </label>
                         <input
                             type="text"

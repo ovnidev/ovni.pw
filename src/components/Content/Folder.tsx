@@ -7,7 +7,7 @@ import Modal from "@component/UI/Modal/Modal"
 import CreatePassword from "@component/Form/Password/Create"
 import UpdateFolder from "@component/Form/Folder/Update"
 import DeleteFolder from "@component/Form/Folder/Delete"
-import Passwords from "@component/Content/Password"
+import Passwords from "@component/Content/Password/List"
 
 export default function Main(props: { masterPassword: string, folderId: string, onFolderUpdate: Function, onFolderDelete: Function }) {
 
@@ -116,6 +116,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
                         >
                             <CreatePassword
                                 folderId={ folderId }
+                                masterPassword={ masterPassword }
                                 onCreate={ createPassword }
                             />
                         </Modal>

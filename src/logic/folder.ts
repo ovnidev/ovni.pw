@@ -1,5 +1,7 @@
 import { getStorage, setStorage } from "@logic/storage"
 
+export const getFolderCount = () => getStorage('folders').length
+
 export const getFolderList = () => {
     const folders = getStorage('folders')
     if(!folders || folders.length === 0) return []

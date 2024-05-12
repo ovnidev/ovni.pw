@@ -31,7 +31,7 @@ dialog .body .input-buttons {
 }
 
 dialog .body .input-buttons .btn-input {
-    @apply mr-1 last:mr-0 hover:border-darker/10 hover:dark:border-white/20 duration-300 border backdrop-blur-md border-white dark:border-white/10 bg-white dark:bg-white/5 rounded-[3px] align-middle cursor-pointer px-2 py-1
+    @apply mr-1 last:mr-0 hover:border-darker/20 hover:dark:border-white/20 duration-300 border backdrop-blur-md border-darker/10 dark:border-white/10 bg-white dark:bg-white/5 rounded-[3px] align-middle cursor-pointer px-2 py-1
 }
 
 dialog .body .input-buttons .btn-input.active {

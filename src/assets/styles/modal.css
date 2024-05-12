@@ -1,5 +1,5 @@
 dialog {
-    @apply bg-white dark:bg-darker text-darker dark:text-white rounded-[6px] border border-darker/10 dark:border-white/10 md:top-[50.333%] md:left-[50.333%] md:translate-x-[-50.333%] md:translate-y-[-50.333%] md:min-w-[305px] md:max-w-[805px] m-5 h-min md:h-min w-full md:w-fit
+    @apply bg-white dark:bg-darker text-darker dark:text-white rounded-[6px] border border-darker/10 dark:border-white/10 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:min-w-[300px] md:max-w-[800px] m-5 h-min md:h-min w-full md:w-fit
 }
 
 dialog > .head {

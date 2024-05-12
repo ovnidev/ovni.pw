@@ -55,7 +55,11 @@ export const createDefaultAlphabet = () => {
 
 }
 
-export const getAlphabetCount = () => getStorage('alphabets').length
+export const getAlphabetCount = () => {
+    const alphabets = getStorage('alphabets')
+    if(!alphabets || alphabets.length === 0) return 0
+    return alphabets.length
+}
 
 export const getAlphabetList = () => {
     const alphabets = getStorage('alphabets')

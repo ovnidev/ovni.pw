@@ -1,0 +1,39 @@
+.page {
+    @apply w-full
+}
+
+.page .head {
+    @apply p-5 border-b border-darker/5 dark:border-white/5 w-full dark:bg-black/10 bg-white/70
+}
+
+.page .head .title {
+    @apply text-[20px] md:text-[30px] font-inter-black
+}
+
+.page .head .subtitle {
+    @apply text-[16px] text-darker/70 dark:text-white/70
+}
+
+.page .head .buttons {
+    @apply absolute right-[25px] top-[25px]
+}
+
+.page .head button.btn {
+    @apply bg-primary/60 dark:bg-primary/30 mb-2 mr-2 md:mb-0 last:mr-0 w-full md:w-fit border border-primary hover:bg-primary hover:dark:bg-primary duration-300 text-[13px] inline-block py-2 px-3 align-middle rounded-[4px] text-white dark:text-white
+}
+
+.page .head button.btn.delete {
+    @apply bg-rose-500/60 dark:bg-rose-500/30 border border-rose-500 hover:bg-rose-500 hover:dark:bg-rose-500
+}
+
+.page .head button.btn.create {
+    @apply bg-emerald-500/60 dark:bg-emerald-500/30 border border-emerald-500 hover:bg-emerald-500 hover:dark:bg-emerald-500
+}
+
+.page .body {
+    @apply p-5
+}
+
+.page .body .list {
+    @apply md:grid md:grid-cols-2 xl:grid-cols-4 gap-5
+}

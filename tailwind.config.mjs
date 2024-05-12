@@ -93,6 +93,7 @@ export default {
 
 				'primary': '#7C1FF1',
 				'darker': '#13151a',
+				'lighter': '#edf0f3',
 				'discord': '#404eed',
 
 				'lavende': {

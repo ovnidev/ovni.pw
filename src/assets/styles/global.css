@@ -34,16 +34,12 @@ html {
     @apply min-h-screen
 }
 
-html body {
-    font-family: 'Inter', Verdana, Geneva, Tahoma, sans-serif;
+body {
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     word-break: break-word;
     overflow-x: hidden;
-    @apply bg-white dark:text-white text-darker subpixel-antialiased selection:bg-[#335d712e] selection:text-[#30393f] min-h-screen
-}
-
-html.dark body {
-    @apply bg-darker text-white selection:bg-[#cad2db38] selection:text-white
+    @apply bg-lighter/20 dark:bg-darker text-darker dark:text-white selection:bg-primary/[0.08] selection:text-primary selection:dark:bg-white/[0.1] selection:dark:text-white min-h-screen subpixel-antialiased
 }
 
 strong, b {

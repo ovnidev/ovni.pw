@@ -4,24 +4,30 @@ import { getPasswordList } from "@logic/password"
 import { openModal } from "@logic/modal"
 
 import Modal from "@component/UI/Modal/Modal"
-import CreatePassword from "@component/Password/Create"
-import UpdateFolder from "@component/Folder/Update"
+import CreatePassword from "@component/Form/Password/Create"
+import UpdateFolder from "@component/Form/Folder/Update"
+import DeleteFolder from "@component/Form/Folder/Delete"
 import Passwords from "@component/Content/Password"
 
-export default function Main(props: { folderId: string, onFolderUpdate: Function }) {
+export default function Main(props: { masterPassword: string, folderId: string, onFolderUpdate: Function, onFolderDelete: Function }) {
 
-    const { folderId, onFolderUpdate } = props
+    const { masterPassword, folderId, onFolderUpdate, onFolderDelete } = props
 
     const [ folder, setFolder ] = useState(null)
     const [ passwordList, setPasswordList ] = useState([])
+
+    const createPassword = () => {
+        setPasswordList(getPasswordList(folderId))
+    }
 
     const updateFolder = (data: any) => {
         setFolder(data)
         onFolderUpdate(data)
     }
 
-    const createPassword = () => {
-        setPasswordList(getPasswordList(folderId))
+    const deleteFolder = () => {
+        setFolder(null)
+        onFolderDelete(folderId)
     }
 
     useEffect(() => {
@@ -34,17 +40,18 @@ export default function Main(props: { folderId: string, onFolderUpdate: Function
     return (
         <>
             { folder && (
-                <div className="folder">
+                <>
+                    <div className="head">
 
-                    <h2 className="title">
+                        <h2 className="title">
+                            <i className={`align-middle mt-[-3px] mr-2 inline-block icon ti ti-${ folder.icon ? folder.icon : 'folder-filled' }`}></i> { folder.name }
+                        </h2>
 
-                        { folder.name }
-
-                        <div className="block md:float-right mt-5 md:mt-0">
+                        <div className="buttons">
 
                             <button
-                                className="button new"
-                                onClick={ () => openModal("new-password") }
+                                className="btn create"
+                                onClick={ () => openModal("create-password") }
                             >
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="align-middle mt-[-4px] inline-block mr-2 icon icon-tabler icons-tabler-outline icon-tabler-lock-plus">
@@ -61,7 +68,7 @@ export default function Main(props: { folderId: string, onFolderUpdate: Function
                             </button>
 
                             <button
-                                className="button"
+                                className="btn default"
                                 onClick={ () => openModal("update-folder") }
                             >
 
@@ -82,7 +89,7 @@ export default function Main(props: { folderId: string, onFolderUpdate: Function
                             </button>
 
                             <button
-                                className="button delete"
+                                className="btn delete"
                                 onClick={ () => openModal("delete-folder") }
                             >
 
@@ -99,25 +106,50 @@ export default function Main(props: { folderId: string, onFolderUpdate: Function
 
                         </div>
 
-                    </h2>
+                    </div>
 
-                    <Modal
-                        name="new-password"
-                        title="Create Password"
-                    >
-                        <CreatePassword folderId={ folderId } onCreate={ createPassword } />
-                    </Modal>
+                    <div className="body">
 
-                    <Modal
-                        name="update-folder"
-                        title="Update Folder"
-                    >
-                        <UpdateFolder folderId={ folderId } onUpdate={ updateFolder } />
-                    </Modal>
+                        <Modal
+                            name="create-password"
+                            title="Create Password"
+                        >
+                            <CreatePassword
+                                folderId={ folderId }
+                                onCreate={ createPassword }
+                            />
+                        </Modal>
 
-                    <Passwords passwords={ passwordList } onPasswordUpdate={ () => setPasswordList(getPasswordList(folderId)) } />
+                        <Modal
+                            name="update-folder"
+                            title="Update Folder"
+                        >
+                            <UpdateFolder
+                                folderId={ folderId }
+                                onUpdate={ updateFolder }
+                            />
+                        </Modal>
 
-                </div>
+                        <Modal
+                            name="delete-folder"
+                            title="Delete Folder"
+                        >
+                            <DeleteFolder
+                                folderId={ folderId }
+                                onDelete={ deleteFolder }
+                            />
+                        </Modal>
+
+                        <Passwords
+                            masterPassword={ masterPassword }
+                            passwords={ passwordList }
+                            onPasswordUpdate={ () => setPasswordList(getPasswordList(folderId)) }
+                            onPasswordDelete={ () => setPasswordList(getPasswordList(folderId)) }
+                        />
+
+                    </div>
+
+                </>
             )}
         </>
     )

@@ -1,0 +1,27 @@
+.alphabet {
+    @apply mb-2 md:mb-0 md:inline-block bg-white dark:bg-black/10 border border-darker/10 dark:border-white/10 rounded-[4px] hover:border-darker/20 hover:dark:bg-white/[0.01] duration-300
+}
+
+.alphabet > .head {
+    @apply bg-darker/[0.01] dark:bg-white/[0.02] text-[16px] font-inter-black px-5 py-3 border-b border-darker/5 dark:border-white/10
+}
+
+.alphabet > .head button {
+    @apply px-2 text-center py-1 border border-darker/10 dark:border-white/5 rounded-[4px] mr-1 last:mr-[-12px] mt-[-4px] align-middle
+}
+
+.alphabet > .head button svg {
+    @apply p-0 m-0 text-center mt-[-4px] align-middle
+}
+
+.alphabet > .head button.update {
+    @apply text-amber-500 hover:bg-amber-500/10 hover:dark:bg-amber-500/10 duration-300 hover:border-amber-500
+}
+
+.alphabet > .head button.delete {
+    @apply text-rose-500 hover:bg-rose-500/10 hover:dark:bg-rose-500/10 duration-300 hover:border-rose-500
+}
+
+.alphabet textarea {
+    @apply w-full focus:border-darker/20 focus:dark:border-white/20 duration-300 border placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/30 group-hover:bg-white group-hover:dark:bg-black/50 dark:bg-black/30 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px] h-full font-mono text-darker/70 dark:text-white/70 selection:text-darker selection:bg-darker/10 selection:dark:text-white selection:dark:bg-white/10
+}

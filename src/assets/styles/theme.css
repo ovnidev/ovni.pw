@@ -1,0 +1,3 @@
+.toggle {
+    @apply w-full relative text-[24px] flex justify-center rounded border hover:!border-primary hover:!bg-primary/30 duration-300 border-darker/10 dark:border-white/10 bg-darker/[0.01] dark:bg-black/10 px-2 py-2 dark:text-white text-darker/70 first:mt-0 mt-2
+}

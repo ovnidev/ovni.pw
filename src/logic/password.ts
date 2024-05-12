@@ -48,13 +48,14 @@ export const createPassword = (name: string, identifier: string, folder: string)
     
 }
 
-export const updatePassword = (id: string, service: string, folder: string) => {
+export const updatePassword = (id: string, name: string, identifier: string, folder: string) => {
 
     const passwords = getStorage('passwords')
 
     for (let index = 0; index < passwords.length; index++) {
         if(passwords[index].pid === id) {
-            passwords[index].service = service
+            passwords[index].name = name
+            passwords[index].identifier = identifier
             passwords[index].folder = folder
             break
         }
@@ -65,5 +66,16 @@ export const updatePassword = (id: string, service: string, folder: string) => {
 }
 
 export const deletePassword = (id: string) => {
+
+    const passwords = getStorage('passwords')
+
+    for (let index = 0; index < passwords.length; index++) {
+        if(passwords[index].pid === id) {
+            passwords.splice(index, 1)
+            break
+        }
+    }
     
+    setStorage('passwords', passwords)
+
 }

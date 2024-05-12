@@ -1,9 +1,9 @@
 .sidebar {
-    @apply flex h-screen w-16 flex-col justify-between border-e border-white/5 bg-black/30 overflow-y-auto
+    @apply hidden md:flex h-screen w-16 flex-col justify-between border-r border-darker/10 dark:border-white/5 bg-white dark:bg-black/30 overflow-y-auto
 }
 
 .sidebar .logo {
-    @apply items-center justify-center text-center py-3
+    @apply items-center justify-center text-center text-darker dark:text-white
 }
 
 .sidebar .logo > .text {
@@ -11,15 +11,19 @@
 }
 
 .sidebar .menu {
-    @apply border-t border-white/5
+    @apply mt-2
+}
+
+.sidebar .menu.bottom {
+    @apply border-t dark:border-white/5 border-darker/5
 }
 
 .sidebar .menu button.button {
-    @apply w-full relative text-[28px] flex justify-center rounded border hover:!border-primary hover:!bg-primary/30 duration-300 border-white/10 bg-black/10 px-2 py-2 text-white
+    @apply w-full relative text-[28px] flex justify-center rounded border hover:!border-primary hover:!bg-primary/30 duration-300 border-darker/10 dark:border-white/10 bg-darker/[0.01] dark:bg-black/10 px-2 py-2 dark:text-white text-darker/70
 }
 
 .sidebar .menu button.button.active {
-    @apply drop-shadow-[0px_0px_20px_#7c1ff1] w-full relative text-[28px] flex justify-center rounded border border-primary bg-primary/30 px-2 py-2 text-white
+    @apply drop-shadow-[0px_0px_20px_#7c1ff1] w-full relative text-[28px] flex justify-center rounded border border-primary bg-primary/20 dark:bg-primary/30 px-2 py-2 dark:text-white
 }
 
 .sidebar .menu button.button .icon {

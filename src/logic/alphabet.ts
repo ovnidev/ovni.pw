@@ -26,7 +26,7 @@ export const createDefaultAlphabet = () => {
             name: 'Characters and digits',
             identifier: 'chars-digits',
             characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',
-            description: 'Characters (uppercase and lowercase) and digits'
+            description: 'Characters and digits'
         },
         {
             aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
@@ -54,6 +54,8 @@ export const createDefaultAlphabet = () => {
     setStorage('alphabets', defaultAlphabets)
 
 }
+
+export const getAlphabetCount = () => getStorage('alphabets').length
 
 export const getAlphabetList = () => {
     const alphabets = getStorage('alphabets')

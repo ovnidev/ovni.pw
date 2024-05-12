@@ -2,17 +2,16 @@ import * as randomseed from "random-seed"
 
 declare const sha512: Function
 
-const characters = "0123456789abcdefghijklmnopqrstuvwxyz_-!@#$%&*ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+export const genPassword = async (master: string, identifier: string, length: number, alphabet: { identifier: string, characters: string }): Promise<string> => {
 
-export const getPassword = async (master: string, service: string, length: number, alphabet: string): Promise<string> => {
-
-    if(service == '' || master == '') return ''
+    if(master == '' || identifier == '') return ''
 
     const masterHash = await createHash(master)
-    const serviceHash = await createHash(service)
-    const hash = await createHash(masterHash + serviceHash)
+    const identifierHash = await createHash(identifier)
+    const alphabetHash = await createHash(alphabet.identifier)
+    const hash = await createHash(masterHash + identifierHash + alphabetHash)
 
-    return createPassword(hash, length, alphabet)
+    return createPassword(hash, length, alphabet.characters)
 
 }
 
@@ -33,14 +32,18 @@ const createHash = async (str: string): Promise<string> => {
     return Array.prototype.map.call(new Uint8Array(buffer), x => (('00' + x.toString(16)).slice(-2))).join('')
 }
 
-export const getCssColor = (master: string, service: string, s = 75, l = 75): string => {
+export const getCssColor = (master: string, identifier: string, s = 75, l = 75): string => {
 
-    if(service == '' || master == '') return 'hsl(255, ' + s + '%, ' + l + '%)'
+    if(identifier == '' || master == '') return 'hsl(255, ' + s + '%, ' + l + '%)'
 
-    const seed = sha512(master + service)
+    const seed = sha512(master + identifier)
     const random = randomseed.create(seed)
     const h = random.intBetween(0, 360)
 
     return 'hsl(' + h + ', ' + s + '%, ' + l + '%)'
 
+}
+
+export const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
 }

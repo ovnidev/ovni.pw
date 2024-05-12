@@ -22,6 +22,34 @@
     @apply text-rose-500 hover:bg-rose-500/10 hover:dark:bg-rose-500/10 duration-300 hover:border-rose-500
 }
 
-.box textarea {
+.box .body {
+    @apply p-5
+}
+
+.box .body textarea {
     @apply w-full focus:border-darker/20 focus:dark:border-white/20 duration-300 border placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/30 group-hover:bg-white group-hover:dark:bg-black/50 dark:bg-black/30 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px] h-full font-mono text-darker/70 dark:text-white/70 selection:text-darker selection:bg-darker/10 selection:dark:text-white selection:dark:bg-white/10
+}
+
+.box .body input {
+    @apply w-full focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/20 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px]
+}
+
+.box .body .input-buttons {
+    @apply absolute top-1/2 right-[10px] mt-[-11px]
+}
+
+.box .body .input-buttons.label {
+    @apply absolute top-1/2 right-[10px] mt-0
+}
+
+.box .body .input-buttons .btn-input {
+    @apply mr-1 last:mr-0 hover:border-darker/10 hover:dark:border-white/20 duration-300 border backdrop-blur-md border-white dark:border-white/10 bg-white dark:bg-white/5 rounded-[3px] align-middle cursor-pointer px-2 py-1
+}
+
+.box .body .input-buttons .btn-input.active {
+    @apply border-emerald-500 dark:border-emerald-500 bg-emerald-500/30
+}
+
+.box .body .input-buttons .btn-input i {
+    @apply align-middle mt-[-2px] inline-block
 }

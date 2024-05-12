@@ -1,5 +1,5 @@
 dialog {
-    @apply bg-white dark:bg-darker text-darker dark:text-white rounded-[6px] border border-darker/10 dark:border-white/10 md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%] md:min-w-[300px] md:max-w-[800px] m-5 h-min md:h-min w-full md:w-fit
+    @apply bg-white dark:bg-darker text-darker dark:text-white rounded-[6px] border border-darker/10 dark:border-white/10 md:top-[50.333%] md:left-[50.333%] md:translate-x-[-50.333%] md:translate-y-[-50.333%] md:min-w-[305px] md:max-w-[805px] m-5 h-min md:h-min w-full md:w-fit
 }
 
 dialog > .head {
@@ -26,8 +26,32 @@ dialog .body input {
     @apply w-full focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/20 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px]
 }
 
+dialog .body .input-buttons {
+    @apply absolute top-1/2 right-[8px]
+}
+
+dialog .body .input-buttons .btn-input {
+    @apply mr-1 last:mr-0 hover:border-darker/20 hover:dark:border-white/20 duration-300 border backdrop-blur-md border-darker/10 dark:border-white/10 bg-white dark:bg-white/5 rounded-[3px] align-middle cursor-pointer px-2 py-1
+}
+
+dialog .body .input-buttons .btn-input.active {
+    @apply border-emerald-500 dark:border-emerald-500 bg-emerald-500/30
+}
+
+dialog .body .input-buttons .btn-input i {
+    @apply align-middle mt-[-2px] inline-block
+}
+
 dialog .body textarea {
     @apply w-full focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/20 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px]
+}
+
+dialog .body select {
+    @apply w-full focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/20 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px]
+}
+
+dialog .body select > option {
+    @apply bg-white dark:bg-darker
 }
 
 dialog .body label {

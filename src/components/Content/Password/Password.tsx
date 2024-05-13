@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { openModal } from "@logic/modal"
 import { genPassword, copyToClipboard } from "@logic/utils"
 import { getAlphabet } from "@logic/alphabet"
+import { getPassword } from "@logic/password"
 
 import Modal from "@component/UI/Modal/Modal"
 import UpdatePassword from "@component/Form/Password/Update"
@@ -9,7 +10,7 @@ import DeletePassword from "@component/Form/Password/Delete"
 
 export default function Main(props: { passwordData: any, masterPassword: string, onPasswordUpdate: Function, onPasswordDelete: Function }) {
 
-    const { passwordData, masterPassword, onPasswordUpdate, onPasswordDelete } = props
+    let { passwordData, masterPassword, onPasswordUpdate, onPasswordDelete } = props
 
     const [ password, setPassword ] = useState('')
     const [ passCopied, setPassCopied ] = useState(false)
@@ -30,6 +31,12 @@ export default function Main(props: { passwordData: any, masterPassword: string,
             setPassCopied(false)
         }, 3000)
 
+    }
+
+    const updatePassword = () => {
+        onPasswordUpdate()
+        passwordData = getPassword(passwordData.pid)
+        generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier)
     }
 
     useEffect(() => {
@@ -119,7 +126,7 @@ export default function Main(props: { passwordData: any, masterPassword: string,
                 <UpdatePassword
                     passwordId={ passwordData.pid }
                     masterPassword={ masterPassword }
-                    onUpdate={ onPasswordUpdate }
+                    onUpdate={ updatePassword }
                 />
             </Modal>
 

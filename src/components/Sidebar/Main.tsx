@@ -37,7 +37,7 @@ export default function Main(props: { masterPassword: string, onPageClick: Funct
                     <div className="logo">
                         <div className="px-2">
                             <button
-                                name="Home"
+                                aria-label="Home"
                                 className={ `${ pageActive === 'home' ? 'active ' : '' }button !py-3` }
                                 onClick={ () => {
                                         onPageClick('home');
@@ -83,7 +83,7 @@ export default function Main(props: { masterPassword: string, onPageClick: Funct
 
                         <>
                             <button
-                                name="Create new folder"
+                                aria-label="Create new folder"
                                 className="button"
                                 onClick={ () => openModal("create-folder") }
                             >
@@ -96,7 +96,7 @@ export default function Main(props: { masterPassword: string, onPageClick: Funct
                             </button>
 
                             <button
-                                name="Alphabet"
+                                aria-label="Alphabet"
                                 className={ `${ pageActive === 'alphabet' ? 'active ' : '' }button mt-2` }
                                 onClick={ () => {
                                     handleActivePage('alphabet');

@@ -39,7 +39,7 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
                     A simple and super secure way to generate and no-store your passwords.
 
                     <button
-                        name="How it works"
+                        aria-label="How it works"
                         onClick={ () => openModal("info") }
                         className="text-[11px] text-darker dark:text-white hover:text-primary duration-300 rounded-full ml-2 align-middle mt-[-2px]"
                     >

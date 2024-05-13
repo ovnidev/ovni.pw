@@ -15,7 +15,7 @@ export default function Main(props: { folders: any, pageActive: string, onFolder
             { folderList.length > 0 && folderList.map((folder: any) => (
                 <li key={ folder.fid }>
                     <button
-                        name={ folder.name }
+                        aria-label={ folder.name }
                         className={ `${ folderActive === folder.fid && pageActive === 'folder' ? 'active ' : '' }button` }
                         onClick={ () => {
                                 onFolderClick(folder.fid);

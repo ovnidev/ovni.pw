@@ -133,6 +133,7 @@ export default function Main(props: { passwordId: string, masterPassword: string
                             </label>
                             <select
                                 name="alphabet"
+                                value={ form.alphabet }
                                 onChange={ (event) => {
                                     setForm({ ...form, alphabet: event.target.value });
                                     generatePassword(event.target.value, form.length, form.identifier);

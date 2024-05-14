@@ -35,11 +35,11 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Arial', Verdana;
     font-size: 14px;
     word-break: break-word;
     overflow-x: hidden;
-    @apply bg-lighter/20 dark:bg-darker text-darker dark:text-white selection:bg-primary/[0.08] selection:text-primary selection:dark:bg-white/[0.1] selection:dark:text-white min-h-screen subpixel-antialiased
+    @apply bg-lighter/20 dark:bg-darker text-darker dark:text-white selection:bg-primary/[0.08] selection:text-primary selection:dark:bg-white/[0.1] selection:dark:text-white min-h-screen subpixel-antialiased h-screen
 }
 
 strong, b {

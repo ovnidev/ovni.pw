@@ -7,7 +7,7 @@
 }
 
 .box > .head button {
-    @apply px-2 text-center py-1 border border-darker/10 dark:border-white/5 rounded-[4px] mr-1 last:mr-[-12px] mt-[-4px] align-middle
+    @apply px-2 py-1 text-center  border border-darker/10 dark:border-white/5 rounded-[4px] mr-1 last:mr-[-12px] mt-[-4px] align-middle
 }
 
 .box > .head button svg {
@@ -43,7 +43,7 @@
 }
 
 .box .body .input-buttons .btn-input {
-    @apply mr-1 last:mr-0 hover:border-darker/10 hover:dark:border-white/20 duration-300 border backdrop-blur-md border-white dark:border-white/10 bg-white dark:bg-white/5 rounded-[3px] align-middle cursor-pointer px-2 py-1
+    @apply mr-1 last:mr-0 hover:border-darker/20 hover:dark:border-white/20 duration-300 border backdrop-blur-md border-darker/10 dark:border-white/10 bg-white dark:bg-white/5 rounded-[3px] align-middle cursor-pointer px-2 py-1
 }
 
 .box .body .input-buttons .btn-input.active {

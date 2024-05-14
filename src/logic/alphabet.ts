@@ -1,4 +1,9 @@
 import { getStorage, setStorage } from "@logic/storage"
+import { generateId } from "@logic/utils"
+
+export const importAlphabets = (data: any) => {
+    setStorage('alphabets', data)
+}
 
 export const createDefaultAlphabet = () => {
 
@@ -8,42 +13,42 @@ export const createDefaultAlphabet = () => {
 
     const defaultAlphabets = [
         {
-            aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            aid: generateId(),
             name: 'Default',
             identifier: 'default',
             characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%*()_+=-?[]{}",./<>|',
             description: 'Characters, digits and special characters'
         },
         {
-            aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            aid: generateId(),
             name: 'Spanish',
             identifier: 'spanish',
             characters: 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz1234567890¡!ç@#€$%*()_+=-¿?[]{}",./<>|',
             description: 'Same as default plus ñÑ€¡¿ç'
         },
         {
-            aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            aid: generateId(),
             name: 'Characters and digits',
             identifier: 'chars-digits',
             characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',
             description: 'Characters and digits'
         },
         {
-            aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            aid: generateId(),
             name: 'Legacy',
             identifier: 'legacy',
             characters: 'ABCDFGHIJKLMNOPQRSTUVWXYZabdfghijklmnopqrstuvwxyz1234567890',
             description: 'A-Z a-z 0-9 without E/e'
         },
         {
-            aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            aid: generateId(),
             name: 'Unicode madness',
             identifier: 'crazy',
             characters: 'ꓯꓭꓛꓷꓱꓞꓨꓩꓘꓶꟽИꟼꓤƧꓕꓵꓥ༽᚛᚜‹›⁅⁆⁽⁾₍₎⅀∁∂∃∄∈∉∊∋∌∍∑∕∖√∛∜∝∟∠∡∢∤∦∫∬∭∮∯∰∱∲∳∹∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≒≓≔≕≟≠≢≤≥≦≧≨≩≪≫≮≯≰≱≲≳≴≵≶≷≸≹≺≻≼≽≾≿⊀⊁⊂⊃',
             description: 'Uncommon unicode characters'
         },
         {
-            aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            aid: generateId(),
             name: 'Only digits',
             identifier: 'digits',
             characters: '1234567890',
@@ -82,7 +87,7 @@ export const createAlphabet = (name: string, identifier: string, characters: str
     const alphabets = getAlphabetList()
 
     const newAlphabet = {
-        aid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        aid: generateId(),
         name: name,
         identifier: identifier,
         characters: characters,
@@ -116,8 +121,6 @@ export const updateAlphabet = (id: string, name: string, identifier: string, cha
 export const deleteAlphabet = (id: string) => {
 
     const alphabets = getAlphabetList()
-
-    console.log(alphabets)
 
     for (let i = 0; i < alphabets.length; i++) {
         if(alphabets[i].aid === id) {

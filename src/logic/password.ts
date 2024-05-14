@@ -1,9 +1,20 @@
 import { getStorage, setStorage } from "@logic/storage"
+import { generateId } from "@logic/utils"
+
+export const importPasswords = (data: any) => {
+    setStorage('passwords', data)
+}
 
 export const getPasswordCount = () => {
     const passwords = getStorage('passwords')
     if(!passwords || passwords.length === 0) return 0
     return passwords.length
+}
+
+export const getAllPasswordList = () => {
+    const passwords = getStorage('passwords')
+    if(!passwords) return []
+    return passwords
 }
 
 export const getPasswordList = (fid: string) => {
@@ -42,7 +53,7 @@ export const createPassword = (name: string, identifier: string, alphabet: strin
     if(!passwords) passwords = []
 
     const newPassword = {
-        pid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        pid: generateId(),
         name: name,
         identifier: identifier,
         alphabet: alphabet,

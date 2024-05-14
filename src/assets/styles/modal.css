@@ -47,7 +47,12 @@ dialog .body textarea {
 }
 
 dialog .body select {
-    @apply w-full focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/20 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px]
+    background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+    background-position: calc(100% - 0.75rem) center !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    @apply w-full focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/20 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px] pr-10
 }
 
 dialog .body select > option {

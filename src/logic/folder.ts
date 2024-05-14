@@ -1,4 +1,27 @@
 import { getStorage, setStorage } from "@logic/storage"
+import { generateId } from "@logic/utils"
+
+export const importFolders = (data: any) => {
+    setStorage('folders', data)
+}
+
+export const createDefaultFolder = () => {
+
+    const folders = getStorage('folders')
+
+    if(folders && (folders.length > 0 || folders.length === 0)) return
+
+    const defaultFolder = [
+        {
+            fid: generateId(),
+            name: 'Default',
+            icon: 'folder-filled'
+        }
+    ]
+
+    setStorage('folders', defaultFolder)
+
+}
 
 export const getFolderCount = () => {
     const folders = getStorage('folders')
@@ -27,7 +50,7 @@ export const createFolder = (name: string, icon: string) => {
     const folders = getFolderList()
 
     const newFolder = {
-        fid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        fid: generateId(),
         name: name,
         icon: icon
     }

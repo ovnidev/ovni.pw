@@ -19,11 +19,11 @@
 }
 
 .sidebar .menu button.button {
-    @apply w-full relative text-[28px] flex justify-center rounded border hover:!border-primary hover:!bg-primary/30 duration-300 border-darker/10 dark:border-white/10 bg-darker/[0.01] dark:bg-black/10 px-2 py-2 dark:text-white text-darker/70
+    @apply w-full relative text-[28px] flex justify-center rounded border hover:!border-primary/50 hover:!bg-primary/5 duration-300 border-darker/10 dark:border-white/10 bg-darker/[0.01] dark:bg-black/10 px-2 py-2 dark:text-white text-darker/70 hover:dark:!border-white/20 hover:dark:!bg-white/5
 }
 
 .sidebar .menu button.button.active {
-    @apply drop-shadow-[0px_0px_20px_#7c1ff1] w-full relative text-[28px] flex justify-center rounded border border-primary bg-primary/20 dark:bg-primary/30 px-2 py-2 dark:text-white
+    @apply drop-shadow-[0px_0px_20px_#7c1ff1] w-full relative text-[28px] flex justify-center rounded border border-primary/50 bg-primary/5 dark:bg-primary/30 px-2 py-2 dark:text-white dark:border-primary hover:dark:!border-primary hover:dark:!bg-primary/30
 }
 
 .sidebar .menu button.button .icon {

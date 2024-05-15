@@ -45,22 +45,31 @@ export default function Main(props: { masterPassword: string, onImportData: Func
 
         reader.readAsText(file)
         reader.onload = async () => {
-            
-            const data = reader.result as string
-            const decodedData = await decodeData(masterPassword, data)
 
-            const { settings, alphabet, folders, passwords } = JSON.parse(decodedData)
+            try {
 
-            importAlphabets(alphabet)
-            importFolders(folders)
-            importPasswords(passwords)
-            importSettings(settings)
+                const data = reader.result as string
+                const decodedData = await decodeData(masterPassword, data)
+    
+                const { settings, alphabet, folders, passwords } = JSON.parse(decodedData)
+    
+                importAlphabets(alphabet)
+                importFolders(folders)
+                importPasswords(passwords)
+                importSettings(settings)
+    
+                onImportData()
+    
+                setFileData('')
+    
+                showAlert('Data imported correctly!', 'success', 'database-import', 6000)
 
-            onImportData()
+            } catch(e) {
 
-            setFileData('')
+                setFileData('')
+                showAlert('Data not imported! Incorrect master password or altered file.', 'error', 'exclamation-circle', 8000)
 
-            showAlert('Data imported correctly!', 'success', 'database-import', 5000)
+            }
 
         }
         

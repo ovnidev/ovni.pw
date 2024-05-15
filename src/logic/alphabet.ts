@@ -82,6 +82,16 @@ export const getAlphabet = (id: string) => {
 
 }
 
+export const getAlphabetByIdentifier = (id: string) => {
+
+    const alphabets = getAlphabetList()
+
+    for (let index = 0; index < alphabets.length; index++) {
+        if(alphabets[index].identifier === id) return alphabets[index]
+    }
+
+}
+
 export const createAlphabet = (name: string, identifier: string, characters: string, description: string) => {
 
     const alphabets = getAlphabetList()

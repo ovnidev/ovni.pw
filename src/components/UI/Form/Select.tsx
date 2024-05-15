@@ -21,12 +21,12 @@ export default function Main(props: { sid: string, options: any, selected: strin
                 onChange={ (event) => {
                     onSelect(sid, event.target.value);
                 }}
+                defaultValue={ selected }
             >
                 { optionList && optionList.map((opt) => (
                     <option
                         key={ opt.aid }
                         value={ opt.identifier }
-                        defaultValue={ opt.identifier === selected ? opt.identifier : '' }
                     >
                         { opt.name }
                     </option>

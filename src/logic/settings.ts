@@ -63,7 +63,7 @@ export const getSetting = (id: string) => {
     const settings = getSettingsList()
 
     for (let index = 0; index < settings.length; index++) {
-        if(settings[index].fid === id) return settings[index]
+        if(settings[index].sid === id) return settings[index]
     }
 
 }

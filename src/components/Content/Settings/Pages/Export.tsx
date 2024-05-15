@@ -5,11 +5,14 @@ import { getFolderList, importFolders } from "@logic/folder"
 import { getAllPasswordList, importPasswords } from "@logic/password"
 import { getSettingsList, importSettings } from "@/logic/settings"
 
+import { showAlert } from "@logic/alert"
 import { encodeData, decodeData, downloadFile } from "@logic/utils"
 
 export default function Main(props: { masterPassword: string, onImportData: Function }) {
 
     const { masterPassword, onImportData } = props
+
+    const [ fileData, setFileData ] = useState('')
 
     const exportAllData = async () => {
 
@@ -30,6 +33,8 @@ export default function Main(props: { masterPassword: string, onImportData: Func
         const timestamp = Date.now()
 
         downloadFile(encodedData, 'data_' + timestamp + '.ovni', 'application/octet-stream')
+
+        showAlert('Data exported correctly!', 'success', 'database-export', 5000)
         
     }
 
@@ -52,6 +57,10 @@ export default function Main(props: { masterPassword: string, onImportData: Func
             importSettings(settings)
 
             onImportData()
+
+            setFileData('')
+
+            showAlert('Data imported correctly!', 'success', 'database-import', 5000)
 
         }
         
@@ -94,7 +103,7 @@ export default function Main(props: { masterPassword: string, onImportData: Func
                     </div>
 
                     <div className="description">
-                        Select a file to restore all data
+                        Select '.ovni' file to restore data
                     </div>
 
                     <div className="setting !top-[22px]">
@@ -102,6 +111,7 @@ export default function Main(props: { masterPassword: string, onImportData: Func
                             type="file"
                             accept=".ovni"
                             className="btn import"
+                            value={ fileData }
                             onChange={ importAllData }
                         />
                     </div>

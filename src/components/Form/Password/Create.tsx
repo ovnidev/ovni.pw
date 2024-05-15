@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
-import { createPassword } from "@logic/password"
-import { getAlphabet, getAlphabetList } from "@logic/alphabet"
+
 import { closeModal } from "@logic/modal"
+import { createPassword } from "@logic/password"
+import { getSetting } from "@logic/settings"
+import { getAlphabet, getAlphabetByIdentifier, getAlphabetList } from "@logic/alphabet"
 import { genPassword, copyToClipboard } from "@logic/utils"
 
 import Info from "@component/UI/Global/Info"
@@ -14,12 +16,13 @@ export default function Main(props: { folderId: string, masterPassword: string, 
     const [ password, setPassword ] = useState('')
     const [ showPassword, setShowPassword ] = useState(false)
     const [ passCopied, setPassCopied ] = useState(false)
+    const [ defaultAlphabet, setDefaultAlphabet ] = useState('')
 
     const [ form, setForm ] = useState({
         name: '',
         identifier: '',
         alphabet: '',
-        length: 14
+        length: 0
     })
 
     const handleSubmit = async (event: any) => {
@@ -32,7 +35,9 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
         onCreate()
 
-        setForm({ ...form, name: '', identifier: '', length: 14 })
+        setForm({ ...form, name: '', identifier: '', length: 0 })
+
+        getSettingData()
         setShowPassword(false)
         setPassword('')
 
@@ -57,13 +62,28 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
     }
 
+    const getSettingData = () => {
+
+        const settingShowPassword = getSetting('default-show-passwords')
+        const settingDefaultLength = getSetting('default-password-length')
+        const settingDefaultAlphabet = getSetting('default-alphabet')
+        const getSettingDefaultAlphabet = getAlphabetByIdentifier(settingDefaultAlphabet.value)
+
+        setShowPassword(settingShowPassword.value)
+
+        setDefaultAlphabet(getSettingDefaultAlphabet.aid)
+
+        setForm({ ...form, name: '', identifier: '', alphabet: getSettingDefaultAlphabet.aid, length: settingDefaultLength.value })
+        
+    }
+
     useEffect(() => {
 
         const alphabets = getAlphabetList()
 
         setAlphabetList(alphabets)
 
-        setForm({ ...form, alphabet: alphabets[0].aid })
+        getSettingData()
 
     }, [])
 
@@ -119,6 +139,7 @@ export default function Main(props: { folderId: string, masterPassword: string, 
                                     setForm({ ...form, alphabet: event.target.value });
                                     generatePassword(event.target.value, form.length, form.identifier);
                                 }}
+                                value={ defaultAlphabet }
                             >
                                 { alphabetList && alphabetList.length > 0 && alphabetList.map((alphabet) => (
                                     <option

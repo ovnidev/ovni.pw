@@ -1,5 +1,6 @@
 import { removeStorage } from "@logic/storage"
 import { openModal } from "@logic/modal"
+import { showAlert } from "@logic/alert"
 
 import { createDefaultFolder } from "@logic/folder"
 import { createDefaultAlphabet } from "@logic/alphabet"
@@ -24,6 +25,8 @@ export default function Main(props: { onResetData: Function }) {
         createDefaultFolder()
 
         onResetData()
+
+        showAlert('Data reset correctly!', 'success', 'restore', 5000)
 
     }
 

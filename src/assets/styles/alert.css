@@ -10,6 +10,10 @@
     @apply bg-emerald-500 text-white font-inter text-[15px]
 }
 
+.alert.error {
+    @apply bg-rose-500 text-white font-inter text-[15px]
+}
+
 .alert.disapear {
     @apply opacity-0
 }

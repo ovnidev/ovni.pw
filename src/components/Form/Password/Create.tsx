@@ -70,7 +70,6 @@ export default function Main(props: { folderId: string, masterPassword: string, 
         const getSettingDefaultAlphabet = getAlphabetByIdentifier(settingDefaultAlphabet.value)
 
         setShowPassword(settingShowPassword.value)
-
         setDefaultAlphabet(getSettingDefaultAlphabet.aid)
 
         setForm({ ...form, name: '', identifier: '', alphabet: getSettingDefaultAlphabet.aid, length: settingDefaultLength.value })
@@ -85,7 +84,7 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
         getSettingData()
 
-    }, [])
+    }, [ folderId ])
 
     return (
         <>
@@ -139,7 +138,7 @@ export default function Main(props: { folderId: string, masterPassword: string, 
                                     setForm({ ...form, alphabet: event.target.value });
                                     generatePassword(event.target.value, form.length, form.identifier);
                                 }}
-                                value={ defaultAlphabet }
+                                value={ form.alphabet }
                             >
                                 { alphabetList && alphabetList.length > 0 && alphabetList.map((alphabet) => (
                                     <option

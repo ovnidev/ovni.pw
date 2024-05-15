@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+
+import { closeModal } from "@logic/modal"
+import { getSetting } from "@logic/settings"
 import { updatePassword, getPassword } from "@logic/password"
 import { getAlphabet, getAlphabetList } from "@logic/alphabet"
-import { closeModal } from "@logic/modal"
 import { genPassword, copyToClipboard } from "@logic/utils"
 
 import Info from "@component/UI/Global/Info"
@@ -22,6 +24,7 @@ export default function Main(props: { passwordId: string, masterPassword: string
         length: 14,
         folder: ''
     })
+    
     const handleSubmit = async (event: any) => {
 
         event.preventDefault()
@@ -31,6 +34,8 @@ export default function Main(props: { passwordId: string, masterPassword: string
         updatePassword(passwordId, form.name, form.identifier, form.alphabet, form.length, form.folder)
 
         onUpdate()
+
+        getSettingData()
 
         closeModal('update-password-' + passwordId)
 
@@ -69,13 +74,18 @@ export default function Main(props: { passwordId: string, masterPassword: string
 
     }
 
+    const getSettingData = () => {
+        const settingShowPassword = getSetting('default-show-passwords')
+        setShowPassword(settingShowPassword.value)
+    }
+
     useEffect(() => {
 
         const alphabets = getAlphabetList()
 
         setAlphabetList(alphabets)
 
-        setForm({ ...form, alphabet: alphabets[0].aid })
+        getSettingData()
 
     }, [])
 
@@ -133,11 +143,11 @@ export default function Main(props: { passwordId: string, masterPassword: string
                             </label>
                             <select
                                 name="alphabet"
-                                value={ form.alphabet }
                                 onChange={ (event) => {
                                     setForm({ ...form, alphabet: event.target.value });
                                     generatePassword(event.target.value, form.length, form.identifier);
                                 }}
+                                value={ form.alphabet }
                             >
                                 { alphabetList && alphabetList.length > 0 && alphabetList.map((alphabet) => (
                                     <option

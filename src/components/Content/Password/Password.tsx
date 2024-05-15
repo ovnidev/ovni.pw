@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
-import { openModal } from "@logic/modal"
+
 import { genPassword, copyToClipboard } from "@logic/utils"
+import { openModal } from "@logic/modal"
+
 import { getAlphabet } from "@logic/alphabet"
 import { getPassword } from "@logic/password"
+import { getSetting } from "@logic/settings"
 
 import Modal from "@component/UI/Modal/Modal"
 import UpdatePassword from "@component/Form/Password/Update"
@@ -39,11 +42,18 @@ export default function Main(props: { passwordData: any, masterPassword: string,
         generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier)
     }
 
+    const getSettingData = () => {
+        const setting = getSetting('default-show-passwords')
+        setShowPassword(setting.value)
+    }
+
     useEffect(() => {
         (async () => {
             generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier)
         })()
     }, [])
+
+    useEffect(() => { getSettingData() }, [])
 
     return (
         <div

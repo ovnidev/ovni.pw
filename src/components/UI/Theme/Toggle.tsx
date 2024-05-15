@@ -34,7 +34,7 @@ export default function Main() {
     return (
         <button
             onClick={ toggleTheme }
-            className="toggle"
+            className="button mt-2"
             aria-label="Toggle Theme"
         >
             { theme === 'light' ? <i className="icon ti ti-sun"></i> : <i className="icon ti ti-moon"></i> }

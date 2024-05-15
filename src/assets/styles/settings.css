@@ -1,0 +1,123 @@
+.settings {
+    @apply bg-lighter/10 border-darker/10 dark:bg-black/30 dark:border-white/5 md:flex flex-grow h-[calc(100vh-86px)]
+}
+
+/* Sidebar */
+
+.settings-sidebar {
+    @apply p-5 h-full border-r border-darker/10 dark:bg-black/20 dark:border-white/5 md:max-w-[250px] bg-white/30 hidden md:block
+}
+
+.settings-sidebar button.btn {
+    @apply px-4 py-3 text-[14px] border border-darker/10 dark:border-white/10 rounded-[4px] w-full text-left mb-2 last:mb-0 hover:border-darker/30 hover:dark:border-white/20 hover:dark:bg-white/5 duration-300 font-inter-bold
+}
+
+.settings-sidebar button.btn.active {
+    @apply border-primary/50 dark:border-primary/80 bg-primary/5 dark:bg-primary/20 dark:text-white text-primary/80
+}
+
+.settings-sidebar button.btn.danger {
+    @apply border-red-500/20 dark:border-red-500/20 dark:bg-red-500/5 dark:text-red-400 text-red-400 hover:border-red-500/50
+}
+
+.settings-sidebar button.btn.active.danger {
+    @apply border-red-500/50 dark:border-red-500/80 bg-red-500/5 dark:bg-red-500/20 dark:text-red-500 text-red-500
+}
+
+/* Body */
+
+.settings-body {
+    @apply p-5 max-w-[800px] mx-auto
+}
+
+.settings-body h2 {
+    @apply text-2xl font-inter-bold
+}
+
+.settings-body .content {
+    @apply p-5 w-full mt-4 rounded-[4px] border border-darker/10 bg-white dark:border-white/5 dark:bg-white/[0.01]
+}
+
+.settings-body .option {
+    @apply relative border-b !border-darker/5 dark:!border-white/5 last:border-none py-5 last:mb-0 p-5
+}
+
+.settings-body .option .name {
+    @apply font-inter-bold text-[16px]
+}
+
+.settings-body .option .description {
+    @apply block text-[14px] text-darker/60 dark:text-white/60
+}
+
+.settings-body .option .setting {
+    @apply absolute right-5 top-[20px]
+}
+
+.settings-body .option .setting button.btn {
+    @apply w-full mt-[-4px] bg-primary/5 dark:bg-primary/30 mb-2 mr-2 md:mb-0 last:mr-0 md:w-fit border border-primary hover:bg-primary hover:dark:bg-primary duration-300 text-[13px] inline-block py-2 px-5 align-middle rounded-[4px] text-primary hover:text-white dark:text-white font-inter-bold cursor-pointer
+}
+
+.settings-body .option .setting button.btn.danger {
+    @apply bg-rose-500/10 dark:bg-rose-500/30 border border-rose-500 hover:bg-rose-500 hover:dark:bg-rose-500 text-rose-500 dark:text-white hover:text-white
+}
+
+.settings-body .option .setting input.btn.import {
+    @apply text-transparent bg-transparent border-transparent max-w-[119px] p-0
+}
+
+.settings-body .option .setting input.btn.import::-webkit-file-upload-button {
+    @apply invisible
+}
+
+.settings-body .option .setting input.btn.import::before {
+    @apply content-["Import_data"] w-full bg-primary/5 dark:bg-primary/30 mb-2 mr-2 md:mb-0 last:mr-0 md:w-fit border border-primary hover:bg-primary hover:dark:bg-primary duration-300 text-[13px] inline-block py-2 px-5 align-middle rounded-[4px] text-primary hover:text-white dark:text-white font-inter-bold cursor-pointer
+}
+
+/* Switch Input */
+
+.settings .switch {
+    @apply relative inline-block w-[54px] h-[28px] mb-1
+}
+
+.settings .switch input {
+    @apply opacity-0 w-0 h-0
+}
+
+.settings .slider {
+    @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 dark:bg-white/5 bg-darker/5 duration-300 rounded-full border border-darker/10 dark:border-white/10
+}
+
+.settings .slider:before {
+    @apply absolute content-[""] h-[20px] w-[20px] left-[3px] bottom-[3px] bg-darker/80 dark:bg-white duration-300 rounded-full
+}
+
+.settings input:checked + .slider {
+    @apply bg-primary
+}
+
+.settings input:checked + .slider:before {
+    @apply translate-x-[26px] bg-white
+}
+
+/* Inputs */
+
+.settings  select {
+    background-position: calc(100% - 0.75rem) center !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    @apply w-full focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/20 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px] pr-10
+}
+
+.settings select > option {
+    @apply bg-white dark:bg-darker
+}
+
+.settings label {
+    @apply font-inter-bold mb-[4px] block text-[14px]
+}
+
+.settings input {
+    @apply w-fit focus:border-darker/20 focus:dark:border-white/20 focus:bg-lighter/50 focus:dark:bg-white/5 duration-300 border text-darker dark:text-white placeholder:text-darker/50 placeholder:dark:text-white/50 border-darker/10 dark:border-white/10 bg-lighter/10 dark:bg-black/10 block px-3 py-3 mb-2 last:mb-0 rounded-[4px] text-[14px]
+}

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import { createDefaultSettings } from '@logic/settings'
+import { createDefaultFolder, getFolderList } from '@logic/folder'
 import { createDefaultAlphabet } from '@logic/alphabet'
 
 import Sidebar from '@component/Sidebar/Main'
@@ -11,8 +13,11 @@ export default function Main() {
     const [ page, setPage ] = useState('home')
     const [ folder, setFolder ] = useState('')
 
+
+    const [ folderList, setFolderList ] = useState([])
     const [ folderUpdated, setFolderUpdated ] = useState(null)
     const [ folderDeleted, setFolderDeleted ] = useState('')
+
     const [ masterPassword, setMasterPassword ] = useState('')
 
     const deletedFolder = (folder: string) => {
@@ -20,7 +25,17 @@ export default function Main() {
         setFolder('')
     }
 
-    useEffect(() => { createDefaultAlphabet() }, [])
+    const updateFolderList = () => {
+        setFolderList(getFolderList())
+    }
+
+    useEffect(() => {
+        createDefaultSettings()
+        createDefaultFolder()
+        createDefaultAlphabet()
+    }, [])
+
+    useEffect(() => { updateFolderList() }, [ folderUpdated, folderDeleted ])
 
     return (
         <main className="h-screen">
@@ -30,13 +45,15 @@ export default function Main() {
                 <div>
 
                     <Sidebar
+                        folders={ folderList }
                         onFolderClick={ (folder: string) => {
                             setPage('folder');
                             setFolder(folder);
                         }}
                         onPageClick={ setPage }
-                        folderDeleted={ folderDeleted }
-                        folderUpdated={ folderUpdated }
+                        onFolderCreate={ setFolder }
+                        onFolderDelete={ folderDeleted }
+                        onFolderUpdate={ folderUpdated }
                         masterPassword={ masterPassword }
                     />
                     
@@ -50,6 +67,8 @@ export default function Main() {
                         onMasterPassword={ setMasterPassword }
                         onFolderUpdate={ setFolderUpdated }
                         onFolderDelete={ deletedFolder }
+                        onImportData={ updateFolderList }
+                        onResetData={ updateFolderList }
                     />
 
                     <Footer />

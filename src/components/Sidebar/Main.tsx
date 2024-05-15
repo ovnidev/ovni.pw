@@ -1,31 +1,35 @@
 import { useEffect, useState } from "react"
-import { getFolderList } from "@logic/folder"
+
 import { openModal } from "@logic/modal"
 
 import Logo from "@component/UI/Logo/Logo"
 import Modal from "@component/UI/Modal/Modal"
 import ThemeToggle from "@component/UI/Theme/Toggle"
 import CreateFolder from "@component/Form/Folder/Create"
-import Folder from "@component/Sidebar/Folder"
+import FolderList from "@component/Sidebar/FolderList"
 
-export default function Main(props: { masterPassword: string, onPageClick: Function, onFolderClick: Function, folderDeleted: string, folderUpdated: string }) {
+export default function Main(props: {
+    folders: any,
+    masterPassword: string,
+    onPageClick: Function,
+    onFolderClick: Function,
+    onFolderCreate: Function,
+    onFolderDelete: string,
+    onFolderUpdate: string
+}) {
 
-    const { masterPassword, onPageClick, onFolderClick, folderDeleted, folderUpdated } = props
+    const { folders, masterPassword, onPageClick, onFolderCreate, onFolderClick, onFolderUpdate, onFolderDelete } = props
 
     const [ pageActive, setPageActive ] = useState('home')
-    const [ folderList, setFolderList ] = useState([])
-
-    const updateFolderList = () => {
-        setFolderList(getFolderList())
-    }
 
     const handleActivePage = (page: string) => {
         onPageClick(page)
         setPageActive(page)
     }
- 
-    useEffect(() => { updateFolderList() }, [ folderUpdated, folderDeleted ])
-    useEffect(() => { handleActivePage('home') }, [ folderDeleted ])
+
+    useEffect(() => {
+        handleActivePage('home')
+    }, [ onFolderDelete ])
 
     return (
         <div className="sidebar no-scrollbar">
@@ -59,8 +63,8 @@ export default function Main(props: { masterPassword: string, onPageClick: Funct
 
                     <ul className="space-y-1 border-t border-darker/5 dark:border-white/5 mt-3 pt-4 px-2">
                         { masterPassword !== '' && (
-                            <Folder
-                                folders={ folderList }
+                            <FolderList
+                                folders={ folders }
                                 pageActive={ pageActive }
                                 onFolderClick={ (ev: any) => {
                                         onFolderClick(ev);
@@ -111,6 +115,20 @@ export default function Main(props: { masterPassword: string, onPageClick: Funct
                                 </svg>
                             </button>
 
+                            <button
+                                aria-label="Settings"
+                                className={ `${ pageActive === 'settings' ? 'active ' : '' }button mt-2` }
+                                onClick={ () => {
+                                    handleActivePage('settings');
+                                }}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-settings">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                </svg>
+                            </button>
+
                         </>
                     )}
 
@@ -124,7 +142,7 @@ export default function Main(props: { masterPassword: string, onPageClick: Funct
                 name="create-folder"
                 title="Create new folder"
             >
-                <CreateFolder onCreate={ updateFolderList } />
+                <CreateFolder onCreate={ onFolderCreate } />
             </Modal>
 
         </div>

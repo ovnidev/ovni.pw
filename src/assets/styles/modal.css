@@ -15,11 +15,15 @@ dialog::backdrop {
 }
 
 dialog .body {
-    @apply p-5 font-inter text-[13px] md:text-[16px] bg-white dark:bg-black/10
+    @apply p-5 font-inter text-[13px] md:text-[15px] bg-white dark:bg-black/10
 }
 
 dialog .body > p {
-    @apply mb-5 last:mb-0
+    @apply mb-3 last:mb-0 text-darker/80 dark:text-white/80
+}
+
+dialog .body > h2 {
+    @apply text-[16px] font-inter-bold
 }
 
 dialog .body input {

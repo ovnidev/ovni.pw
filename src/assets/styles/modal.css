@@ -1,5 +1,5 @@
 dialog {
-    @apply bg-white dark:bg-darker text-darker dark:text-white rounded-[6px] border border-darker/10 dark:border-white/10 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:min-w-[300px] md:max-w-[800px] m-5 h-min md:h-min w-full md:w-fit
+    @apply bg-white dark:bg-darker text-darker dark:text-white rounded-[6px] border border-darker/10 dark:border-white/10 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:translate-y-[-51%] md:min-w-[300px] md:max-w-[800px] m-5 h-min md:h-min w-full md:w-fit
 }
 
 dialog > .head {
@@ -72,9 +72,9 @@ dialog .footer {
 }
 
 dialog .footer button.default {
-    @apply w-full rounded-[4px] bg-primary/10 dark:bg-black/10 hover:drop-shadow-[0px_0px_15px_#7c1ff18c] hover:bg-primary hover:dark:bg-primary duration-300 text-[14px] font-inter-bold py-3 border border-primary hover:text-white mb-2 md:mb-0
+    @apply w-full mt-[-4px] bg-primary/5 dark:bg-primary/5 mb-2 mr-2 md:mb-0 last:mr-0 border border-primary hover:bg-primary hover:dark:bg-primary duration-300 text-[13px] inline-block py-3 px-5 align-middle rounded-[4px] text-primary hover:text-white dark:text-white font-inter-bold cursor-pointer
 }
 
 dialog .footer button.delete {
-    @apply w-full rounded-[4px] bg-rose-500/10 dark:bg-rose-500/10 hover:drop-shadow-[0px_0px_15px_#f43f5e8c] hover:bg-rose-500 hover:dark:bg-rose-500 duration-300 text-[14px] font-inter-bold py-3 border border-rose-500 hover:text-white mb-2 md:mb-0
+    @apply w-full mt-[-4px] bg-rose-500/5 dark:bg-rose-500/5 mb-2 mr-2 md:mb-0 last:mr-0 border border-rose-500 hover:bg-rose-500 hover:dark:bg-rose-500 duration-300 text-[13px] inline-block py-3 px-5 align-middle rounded-[4px] text-rose-500 hover:text-white dark:text-white font-inter-bold cursor-pointer
 }

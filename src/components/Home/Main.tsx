@@ -51,7 +51,7 @@ export default function Main() {
                             setFolder(folder);
                         }}
                         onPageClick={ setPage }
-                        onFolderCreate={ setFolder }
+                        onFolderCreate={ updateFolderList }
                         onFolderDelete={ folderDeleted }
                         onFolderUpdate={ folderUpdated }
                         masterPassword={ masterPassword }

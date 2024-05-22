@@ -100,3 +100,7 @@ export const deleteFolder = (id: string) => {
     setStorage('passwords', passwords)
     
 }
+
+export const updateFolderSort = (folders) => {
+    setStorage('folders', folders)
+}

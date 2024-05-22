@@ -11,9 +11,22 @@ import Modal from "@component/UI/Modal/Modal"
 import UpdatePassword from "@component/Form/Password/Update"
 import DeletePassword from "@component/Form/Password/Delete"
 
-export default function Main(props: { passwordData: any, masterPassword: string, onPasswordUpdate: Function, onPasswordDelete: Function }) {
+export default function Main(props:
+    { 
 
-    let { passwordData, masterPassword, onPasswordUpdate, onPasswordDelete } = props
+        index: number,
+        passwordData: any,
+        masterPassword: string,
+        onPasswordUpdate: Function,
+        onPasswordDelete: Function
+    
+        onPasswordDragStart: Function
+        onPasswordDragEnter: Function
+        onPasswordDragEnd: Function
+    
+    }) {
+
+    let { index, passwordData, masterPassword, onPasswordUpdate, onPasswordDelete, onPasswordDragStart, onPasswordDragEnter, onPasswordDragEnd } = props
 
     const [ password, setPassword ] = useState('')
     const [ passCopied, setPassCopied ] = useState(false)
@@ -57,8 +70,16 @@ export default function Main(props: { passwordData: any, masterPassword: string,
 
     return (
         <div
+
             key={ passwordData.pid }
             className="box group"
+
+            draggable={ true }
+            onDragStart={ () => onPasswordDragStart(index) }
+            onDragEnter={ () => onPasswordDragEnter(index) }
+            onDragEnd={ () => onPasswordDragEnd() }
+            onDragOver={ (e) => e.preventDefault() }
+
         >
             <h2
                 className="head"

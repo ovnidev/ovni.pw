@@ -7,6 +7,7 @@ import Modal from "@component/UI/Modal/Modal"
 import ThemeToggle from "@component/UI/Theme/Toggle"
 import CreateFolder from "@component/Form/Folder/Create"
 import FolderList from "@component/Sidebar/FolderList"
+import GenerateOTP from "@component/Form/Password/OTP"
 
 export default function Main(props: {
     folders: any,
@@ -86,9 +87,10 @@ export default function Main(props: {
                     { masterPassword && (
 
                         <>
+
                             <button
                                 aria-label="Create new folder"
-                                className="button"
+                                className="button mb-2"
                                 onClick={ () => openModal("create-folder") }
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-folder-plus">
@@ -100,8 +102,20 @@ export default function Main(props: {
                             </button>
 
                             <button
+                                aria-label="Generate One Time Password"
+                                className="button mb-2"
+                                onClick={ () => openModal("generate-otp") }
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-key">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z" />
+                                    <path d="M15 9h.01" />
+                                </svg>
+                            </button>
+
+                            <button
                                 aria-label="Alphabet"
-                                className={ `${ pageActive === 'alphabet' ? 'active ' : '' }button mt-2` }
+                                className={ `${ pageActive === 'alphabet' ? 'active ' : '' }button` }
                                 onClick={ () => {
                                     handleActivePage('alphabet');
                                 }}
@@ -122,10 +136,10 @@ export default function Main(props: {
                                     handleActivePage('settings');
                                 }}
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-settings">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-settings-2">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
-                                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                    <path d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z" />
+                                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                 </svg>
                             </button>
 
@@ -143,6 +157,13 @@ export default function Main(props: {
                 title="Create new folder"
             >
                 <CreateFolder onCreate={ onFolderCreate } />
+            </Modal>
+
+            <Modal
+                name="generate-otp"
+                title="Generate One Time Password"
+            >
+                <GenerateOTP masterPassword={ masterPassword } />
             </Modal>
 
         </div>

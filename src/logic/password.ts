@@ -100,3 +100,7 @@ export const deletePassword = (id: string) => {
     setStorage('passwords', passwords)
 
 }
+
+export const updatePasswordSort = (passwords) => {
+    setStorage('passwords', passwords)
+}

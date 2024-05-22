@@ -1,21 +1,47 @@
+import { useEffect, useState, useRef } from "react"
+import { updatePasswordSort } from "@logic/password"
+
 import Password from "@component/Content/Password/Password"
 
 export default function Main(props: { passwords: any, masterPassword: string, onPasswordUpdate: Function, onPasswordDelete: Function }) {
 
     const { passwords, masterPassword, onPasswordUpdate, onPasswordDelete } = props
 
+    const [ passwordList, setPasswordList ] = useState(null)
+
+    const dragPassword = useRef(0)
+    const draggedOverPassword = useRef(0)
+
+    const handleSort = () => {
+        const passwordsClone = [...passwordList]
+        const temp = passwordsClone[dragPassword.current]
+        passwordsClone[dragPassword.current] = passwordsClone[draggedOverPassword.current]
+        passwordsClone[draggedOverPassword.current] = temp
+        setPasswordList(passwordsClone)
+        updatePasswordSort(passwordsClone)
+    }
+
+    useEffect(() => { setPasswordList(passwords) }, [ passwords ])
+
     return (
         <>
 
-            { passwords && passwords.length > 0 && (
+            { passwordList && passwordList.length > 0 && (
                 <div className="md:grid md:grid-cols-2 xl:grid-cols-4 gap-5">
-                    {passwords.map((password: any) => (
+                    {passwordList.map((password: any, index: number) => (
                         <Password
+
                             key={ password.pid }
+                            index={ index }
                             passwordData={ password }
                             masterPassword={ masterPassword }
                             onPasswordUpdate={ onPasswordUpdate }
                             onPasswordDelete={ onPasswordDelete }
+
+                            onPasswordDragStart={ (index: number) => dragPassword.current = index }
+                            onPasswordDragEnter={ (index: number) => draggedOverPassword.current = index }
+                            onPasswordDragEnd={ handleSort }
+
                         />
                     ))}
                 </div>

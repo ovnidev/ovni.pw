@@ -77,10 +77,6 @@ export const updateFolder = (id: string, name: string, icon: string) => {
     
 }
 
-export const updateFolderSort = (folders) => {
-    setStorage('folders', folders)
-}
-
 export const deleteFolder = (id: string) => {
 
     const folders = getFolderList()
@@ -103,4 +99,8 @@ export const deleteFolder = (id: string) => {
 
     setStorage('passwords', passwords)
     
+}
+
+export const updateFolderSort = (folders) => {
+    setStorage('folders', folders)
 }

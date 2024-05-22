@@ -1,12 +1,28 @@
-import { useEffect, useState } from "react"
+export default function Main(props:
+    {
 
-export default function Main(props: { folder: any, folderActive: string, pageActive: string, onFolderClick: Function }) {
+        index: number,
+        folder: any,
+        folderActive: string,
+        pageActive: string,
+        onFolderClick: Function
 
-    const { folder, folderActive, pageActive, onFolderClick } = props
+        onFolderDragStart: Function
+        onFolderDragEnter: Function
+        onFolderDragEnd: Function
+
+    }) {
+
+    const { index, folder, folderActive, pageActive, onFolderClick, onFolderDragStart, onFolderDragEnter, onFolderDragEnd } = props
 
     return (
         <li
             key={ folder.fid }
+            draggable={ true }
+            onDragStart={ () => onFolderDragStart(index) }
+            onDragEnter={ () => onFolderDragEnter(index) }
+            onDragEnd={ () => onFolderDragEnd() }
+            onDragOver={ (e) => e.preventDefault() }
         >
             <button
                 aria-label={ folder.name }

@@ -144,6 +144,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
                         <Passwords
                             masterPassword={ masterPassword }
                             passwords={ passwordList }
+                            folderId={ folderId }
                             onPasswordUpdate={ () => setPasswordList(getPasswordList(folderId)) }
                             onPasswordDelete={ () => setPasswordList(getPasswordList(folderId)) }
                         />

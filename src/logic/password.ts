@@ -101,6 +101,20 @@ export const deletePassword = (id: string) => {
 
 }
 
-export const updatePasswordSort = (passwords) => {
-    setStorage('passwords', passwords)
+export const updatePasswordSort = (passwords, folder) => {
+
+    const oldPasswordList = getStorage('passwords')
+
+    const otherFolderPasswords = []
+
+    for (let index = 0; index < oldPasswordList.length; index++) {
+        if(oldPasswordList[index].folder !== folder) {
+            otherFolderPasswords.push(oldPasswordList[index])
+        }
+    }
+
+    const newPasswordList = [ ...otherFolderPasswords, ...passwords ]
+
+    setStorage('passwords', newPasswordList)
+
 }

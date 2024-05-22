@@ -3,9 +3,9 @@ import { updatePasswordSort } from "@logic/password"
 
 import Password from "@component/Content/Password/Password"
 
-export default function Main(props: { passwords: any, masterPassword: string, onPasswordUpdate: Function, onPasswordDelete: Function }) {
+export default function Main(props: { passwords: any, folderId: string, masterPassword: string, onPasswordUpdate: Function, onPasswordDelete: Function }) {
 
-    const { passwords, masterPassword, onPasswordUpdate, onPasswordDelete } = props
+    const { passwords, folderId, masterPassword, onPasswordUpdate, onPasswordDelete } = props
 
     const [ passwordList, setPasswordList ] = useState(null)
 
@@ -18,7 +18,7 @@ export default function Main(props: { passwords: any, masterPassword: string, on
         passwordsClone[dragPassword.current] = passwordsClone[draggedOverPassword.current]
         passwordsClone[draggedOverPassword.current] = temp
         setPasswordList(passwordsClone)
-        updatePasswordSort(passwordsClone)
+        updatePasswordSort(passwordsClone, folderId)
     }
 
     useEffect(() => { setPasswordList(passwords) }, [ passwords ])

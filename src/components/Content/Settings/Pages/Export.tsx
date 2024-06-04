@@ -3,7 +3,7 @@ import { useState } from "react"
 import { getAlphabetList, importAlphabets } from "@logic/alphabet"
 import { getFolderList, importFolders } from "@logic/folder"
 import { getAllPasswordList, importPasswords } from "@logic/password"
-import { getSettingsList, importSettings } from "@/logic/settings"
+import { getSettingsList, importSettings } from "@logic/settings"
 
 import { showAlert } from "@logic/alert"
 import { encodeData, decodeData, downloadFile } from "@logic/utils"

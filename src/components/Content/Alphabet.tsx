@@ -9,7 +9,7 @@ import DeleteAlphabet from "@component/Form/Alphabet/Delete"
 
 export default function Main() {
 
-    const [ alphabetList, setAlphabetList ] = useState(null)
+    const [ alphabetList, setAlphabetList ] = useState([])
 
     const updateAlphabetList = () => {
         setAlphabetList(getAlphabetList())
@@ -19,7 +19,7 @@ export default function Main() {
 
     return (
         <>
-            { alphabetList && (
+            { alphabetList && alphabetList.length > 0 && (
                 <>
                     <div className="head">
 

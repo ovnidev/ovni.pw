@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getFolder } from "@logic/folder"
 import { getPasswordList } from "@logic/password"
 import { openModal } from "@logic/modal"
+import { IFolder } from "@interfaces/index"
 
 import Modal from "@component/UI/Modal/Modal"
 import CreatePassword from "@component/Form/Password/Create"
@@ -13,20 +14,20 @@ export default function Main(props: { masterPassword: string, folderId: string, 
 
     const { masterPassword, folderId, onFolderUpdate, onFolderDelete } = props
 
-    const [ folder, setFolder ] = useState(null)
+    const [ folder, setFolder ] = useState<IFolder | {}>({})
     const [ passwordList, setPasswordList ] = useState([])
 
     const createPassword = () => {
         setPasswordList(getPasswordList(folderId))
     }
 
-    const updateFolder = (data: any) => {
+    const updateFolder = (data: IFolder) => {
         setFolder(data)
         onFolderUpdate(data)
     }
 
     const deleteFolder = () => {
-        setFolder(null)
+        setFolder({})
         onFolderDelete(folderId)
     }
 
@@ -44,7 +45,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
                     <div className="head">
 
                         <h2 className="title">
-                            <i className={`align-middle mt-[-3px] mr-2 inline-block icon ti ti-${ folder.icon ? folder.icon : 'folder-filled' }`}></i> { folder.name }
+                            <i className={`align-middle mt-[-3px] mr-2 inline-block icon ti ti-${ (folder as IFolder).icon ? (folder as IFolder).icon : 'folder-filled' }`}></i> { (folder as IFolder).name }
                         </h2>
 
                         <div className="buttons">

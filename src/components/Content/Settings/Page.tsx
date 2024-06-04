@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 import General from "@component/Content/Settings/Pages/General"
 import Export from "@component/Content/Settings/Pages/Export"
 import Danger from "@component/Content/Settings/Pages/Danger"

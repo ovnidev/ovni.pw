@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import { useTranslation } from "react-i18next"
 import { openModal } from "@logic/modal"
 
 import Logo from "@component/UI/Logo/Logo"
@@ -15,13 +15,14 @@ export default function Main(props: {
     onPageClick: Function,
     onFolderClick: Function,
     onFolderCreate: Function,
-    onFolderDelete: string,
-    onFolderUpdate: string
+    onFolderDelete: string
 }) {
 
-    const { folders, masterPassword, onPageClick, onFolderCreate, onFolderClick, onFolderUpdate, onFolderDelete } = props
+    const { folders, masterPassword, onPageClick, onFolderCreate, onFolderClick, onFolderDelete } = props
 
     const [ pageActive, setPageActive ] = useState('home')
+
+    const { t } = useTranslation("folder")
 
     const handleActivePage = (page: string) => {
         onPageClick(page)
@@ -154,7 +155,7 @@ export default function Main(props: {
 
             <Modal
                 name="create-folder"
-                title="Create new folder"
+                title={t('modal.create.title')}
             >
                 <CreateFolder onCreate={ onFolderCreate } />
             </Modal>

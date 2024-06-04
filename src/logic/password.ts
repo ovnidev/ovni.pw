@@ -1,5 +1,6 @@
 import { getStorage, setStorage } from "@logic/storage"
 import { generateId } from "@logic/utils"
+import { IPassword } from "@interfaces/index"
 
 export const importPasswords = (data: any) => {
     setStorage('passwords', data)
@@ -17,13 +18,13 @@ export const getAllPasswordList = () => {
     return passwords
 }
 
-export const getPasswordList = (fid: string) => {
+export const getPasswordList = (fid: string): any => {
 
     const passwords = getStorage('passwords')
 
     if(!passwords) return []
 
-    const folderPasswords = []
+    const folderPasswords = [] as IPassword[]
 
     for (let index = 0; index < passwords.length; index++) {
         if(passwords[index].folder === fid) {
@@ -50,9 +51,9 @@ export const createPassword = (name: string, identifier: string, alphabet: strin
 
     let passwords = getStorage('passwords')
 
-    if(!passwords) passwords = []
+    if(!passwords) passwords = [] as IPassword[]
 
-    const newPassword = {
+    const newPassword: IPassword = {
         pid: generateId(),
         name: name,
         identifier: identifier,
@@ -101,7 +102,7 @@ export const deletePassword = (id: string) => {
 
 }
 
-export const updatePasswordSort = (passwords, folder) => {
+export const updatePasswordSort = (passwords: IPassword[], folder: string) => {
 
     const oldPasswordList = getStorage('passwords')
 

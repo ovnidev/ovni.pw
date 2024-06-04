@@ -12,11 +12,10 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
     const { folderId, masterPassword, onCreate } = props
 
-    const [ alphabetList, setAlphabetList ] = useState(null)
+    const [ alphabetList, setAlphabetList ] = useState([])
     const [ password, setPassword ] = useState('')
     const [ showPassword, setShowPassword ] = useState(false)
     const [ passCopied, setPassCopied ] = useState(false)
-    const [ defaultAlphabet, setDefaultAlphabet ] = useState('')
 
     const [ form, setForm ] = useState({
         name: '',
@@ -70,7 +69,6 @@ export default function Main(props: { folderId: string, masterPassword: string, 
         const getSettingDefaultAlphabet = getAlphabetByIdentifier(settingDefaultAlphabet.value)
 
         setShowPassword(settingShowPassword.value)
-        setDefaultAlphabet(getSettingDefaultAlphabet.aid)
 
         setForm({ ...form, name: '', identifier: '', alphabet: getSettingDefaultAlphabet.aid, length: settingDefaultLength.value })
         

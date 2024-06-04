@@ -6,7 +6,7 @@ export const setStorage = (key: string, value: any): void => {
 }
 
 export const getStorage = (key: string) => {
-    const data = storage.getItem(key)
+    const data: any = storage.getItem(key)
     if(/^\s*{\s*"/.test(data) || /^\s*\[/.test(data)) return JSON.parse(data)
     return data
 }

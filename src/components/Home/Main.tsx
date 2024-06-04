@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import Helmet from "react-helmet"
+import { useTranslation } from "react-i18next"
 
 import { createDefaultSettings } from '@logic/settings'
 import { createDefaultFolder, getFolderList } from '@logic/folder'
@@ -13,6 +15,7 @@ export default function Main() {
     const [ page, setPage ] = useState('home')
     const [ folder, setFolder ] = useState('')
 
+    const { t, i18n } = useTranslation("globals")
 
     const [ folderList, setFolderList ] = useState([])
     const [ folderUpdated, setFolderUpdated ] = useState(null)
@@ -38,45 +41,51 @@ export default function Main() {
     useEffect(() => { updateFolderList() }, [ folderUpdated, folderDeleted ])
 
     return (
-        <main className="h-screen">
+        <>
+            <Helmet>
+				<html lang={ i18n.language } />
+                <title>{t('meta.title')}</title>
+                <meta name="description" content={t('meta.description')} />
+            </Helmet>
+            <main className="h-screen">
 
-            <div className="flex flex-grow h-screen">
+                <div className="flex flex-grow h-screen">
 
-                <div>
+                    <div>
 
-                    <Sidebar
-                        folders={ folderList }
-                        onFolderClick={ (folder: string) => {
-                            setPage('folder');
-                            setFolder(folder);
-                        }}
-                        onPageClick={ setPage }
-                        onFolderCreate={ updateFolderList }
-                        onFolderDelete={ folderDeleted }
-                        onFolderUpdate={ folderUpdated }
-                        masterPassword={ masterPassword }
-                    />
-                    
+                        <Sidebar
+                            folders={ folderList }
+                            onFolderClick={ (folder: string) => {
+                                setPage('folder');
+                                setFolder(folder);
+                            }}
+                            onPageClick={ setPage }
+                            onFolderCreate={ updateFolderList }
+                            onFolderDelete={ folderDeleted }
+                            masterPassword={ masterPassword }
+                        />
+                        
+                    </div>
+
+                    <div className="w-full">
+
+                        <Content
+                            page={ page }
+                            folder={ folder }
+                            onMasterPassword={ setMasterPassword }
+                            onFolderUpdate={ setFolderUpdated }
+                            onFolderDelete={ deletedFolder }
+                            onImportData={ updateFolderList }
+                            onResetData={ updateFolderList }
+                        />
+
+                        <Footer />
+
+                    </div>
+
                 </div>
-
-                <div className="w-full">
-
-                    <Content
-                        page={ page }
-                        folder={ folder }
-                        onMasterPassword={ setMasterPassword }
-                        onFolderUpdate={ setFolderUpdated }
-                        onFolderDelete={ deletedFolder }
-                        onImportData={ updateFolderList }
-                        onResetData={ updateFolderList }
-                    />
-
-                    <Footer />
-
-                </div>
-
-            </div>
-            
-        </main>
+                
+            </main>
+        </>
     )
 }

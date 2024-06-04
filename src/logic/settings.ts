@@ -32,20 +32,20 @@ export const createDefaultSettings = () => {
             type: 'select',
             description: 'Default alphabet for new generated passwords',
         },
-        // {
-        //     sid: 'enable-folder-sorting',
-        //     name: 'Enable folder sorting',
-        //     value: true,
-        //     type: 'toggle',
-        //     description: 'Sort folders by dragging them'
-        // },
-        // {
-        //     sid: 'enable-password-sorting',
-        //     name: 'Enable password sorting',
-        //     value: true,
-        //     type: 'toggle',
-        //     description: 'Sort passwords by dragging them'
-        // }
+        {
+            sid: 'enable-folder-sorting',
+            name: 'Enable folder sorting',
+            value: true,
+            type: 'toggle',
+            description: 'Sort folders by dragging them'
+        },
+        {
+            sid: 'enable-password-sorting',
+            name: 'Enable password sorting',
+            value: true,
+            type: 'toggle',
+            description: 'Sort passwords by dragging them'
+        }
     ]
 
     setStorage('settings', defaultSettings)

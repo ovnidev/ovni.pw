@@ -94,13 +94,13 @@ export const deleteFolder = (id: string) => {
     if(!passwords || passwords.length === 0) return
 
     for (let i = 0; i < passwords.length; i++) {
-        passwords = passwords.filter(password => password.folder !== id)
+        passwords = passwords.filter((password: any) => password.folder !== id)
     }
 
     setStorage('passwords', passwords)
     
 }
 
-export const updateFolderSort = (folders) => {
+export const updateFolderSort = (folders: any) => {
     setStorage('folders', folders)
 }

@@ -1,10 +1,10 @@
 import { useState } from "react"
 
-import Home from "@component/Content/Home"
+import Home from "@component/Pages/Home"
 
-import Folder from "@component/Content/Folder"
-import Alphabet from "@component/Content/Alphabet"
-import Settings from "@component/Content/Settings/Main"
+import Folder from "@component/Pages/Folder/Main"
+import Alphabet from "@component/Pages/Alphabet/Main"
+import Settings from "@component/Pages/Settings/Main"
 
 export default function Main(props: {
     page: string,

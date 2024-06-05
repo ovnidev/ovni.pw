@@ -22,7 +22,6 @@
       "@style/*": ["src/assets/styles/*"],
       "@component/*": ["src/components/*"],
       "@layout/*": ["src/layouts/*"],
-      "@page/*": ["src/pages/*"],
       "@logic/*": ["src/logic/*"],
       "@i18n/*": ["src/i18n/*"],
       "@lang/*": ["src/i18n/langs/*"],

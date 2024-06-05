@@ -7,8 +7,8 @@ import { createDefaultFolder, getFolderList } from '@logic/folder'
 import { createDefaultAlphabet } from '@logic/alphabet'
 
 import Sidebar from '@component/Sidebar/Main'
-import Content from '@component/Content/Main'
-import Footer from '@component/Home/Footer'
+import Content from '@component/Pages/Main'
+import Footer from '@component/Pages/Home/Footer'
 
 export default function Main() {
 

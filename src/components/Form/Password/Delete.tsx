@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next"
 import { deletePassword } from "@logic/password"
 import { closeModal } from "@logic/modal"
 
 export default function Main(props: { passwordId: string, name: string, onDelete: Function }) {
 
     const { passwordId, name, onDelete } = props
+
+    const { t } = useTranslation("password")
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
@@ -20,9 +23,7 @@ export default function Main(props: { passwordId: string, name: string, onDelete
     return (
         <>
 
-            <div className="body">
-                Are you sure you want to remove "<strong>{ name }</strong>"?
-            </div>
+            <div className="body" dangerouslySetInnerHTML={{ __html: t("form.delete.body", { name: name }) }} />
 
             <div className="footer">
 
@@ -30,14 +31,14 @@ export default function Main(props: { passwordId: string, name: string, onDelete
                     className="delete"
                     onClick={ handleSubmit }
                 >
-                    Delete!
+                    {t("form.delete.submit")}
                 </button>
 
                 <button
                     onClick={ handleCancel }
                     className="default"
                 >
-                    Cancel
+                    {t("form.delete.cancel")}
                 </button>
 
             </div>

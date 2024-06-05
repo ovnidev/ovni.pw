@@ -1,5 +1,7 @@
 import { closeModal } from "@logic/modal"
 
+import "@style/modal.css"
+
 export default function Main(props: { name: string, title: string, children?: any }) {
 
     const { name, title, children } = props

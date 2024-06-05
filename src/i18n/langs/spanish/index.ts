@@ -1,2 +1,6 @@
 export * from "./globals"
 export * from "./folder"
+export * from "./password"
+export * from "./alphabet"
+export * from "./settings"
+export * from "./home"

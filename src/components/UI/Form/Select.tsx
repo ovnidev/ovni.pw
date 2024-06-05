@@ -23,7 +23,7 @@ export default function Main(props: { sid: string, options: any, selected: strin
                 }}
                 defaultValue={ selected }
             >
-                { optionList && optionList.map((opt) => (
+                { optionList && optionList.map((opt: any) => (
                     <option
                         key={ opt.aid }
                         value={ opt.identifier }

@@ -1,6 +1,6 @@
-import General from "@component/Content/Settings/Pages/General"
-import Export from "@component/Content/Settings/Pages/Export"
-import Danger from "@component/Content/Settings/Pages/Danger"
+import General from "@component/Pages/Settings/Pages/General"
+import Export from "@component/Pages/Settings/Pages/Export"
+import Danger from "@component/Pages/Settings/Pages/Danger"
 
 export default function Main(props: { page: string, masterPassword: string, onImportData: Function, onResetData: Function }) {
 

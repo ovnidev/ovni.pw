@@ -49,6 +49,9 @@ npm run build
 
 If you have ideas for new features, improvements, or bug fixes, feel free to submit a PR.
 
-# Credits
+## Credits
 
 This project would not be possible without the original idea from [@pagoru](https://github.com/pagoru/sss.pagoru.es).
+
+## Logo Copyright
+The logo used in this project is protected by copyright and is not under an MIT license. To see the license to use the logo, access the logo.svg file.

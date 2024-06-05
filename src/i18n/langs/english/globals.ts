@@ -1,5 +1,10 @@
 export const globals = {
 
+    language: {
+        english: "English",
+        spanish: "Español"
+    },
+
     meta: {
         title: "Password Manager - OVNI.pw",
         description: "The most secure password manager",

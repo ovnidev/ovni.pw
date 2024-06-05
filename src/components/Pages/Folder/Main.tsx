@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+
 import { getFolder } from "@logic/folder"
 import { getPasswordList } from "@logic/password"
 import { openModal } from "@logic/modal"
@@ -8,11 +10,13 @@ import Modal from "@component/UI/Modal/Modal"
 import CreatePassword from "@component/Form/Password/Create"
 import UpdateFolder from "@component/Form/Folder/Update"
 import DeleteFolder from "@component/Form/Folder/Delete"
-import Passwords from "@component/Content/Password/List"
+import Passwords from "@component/Pages/Password/List"
 
 export default function Main(props: { masterPassword: string, folderId: string, onFolderUpdate: Function, onFolderDelete: Function }) {
 
     const { masterPassword, folderId, onFolderUpdate, onFolderDelete } = props
+
+    const { t } = useTranslation(["folder", "password"])
 
     const [ folder, setFolder ] = useState<IFolder | {}>({})
     const [ passwordList, setPasswordList ] = useState([])
@@ -64,7 +68,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
                                     <path d="M19 16v6" />
                                 </svg>
 
-                                New Password
+                                {t("head.button.create")}
 
                             </button>
 
@@ -85,7 +89,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
                                     <path d="M20.733 20l1.3 .75" />
                                 </svg>
 
-                                Update Folder
+                                {t("head.button.update")}
 
                             </button>
 
@@ -101,7 +105,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
                                     <path d="M17 22l5 -5" />
                                 </svg>
 
-                                Delete Folder
+                                {t("head.button.delete")}
 
                             </button>
 
@@ -113,7 +117,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
 
                         <Modal
                             name="create-password"
-                            title="Create Password"
+                            title={t("modal.create.title", { ns: 'password' })}
                         >
                             <CreatePassword
                                 folderId={ folderId }
@@ -124,7 +128,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
 
                         <Modal
                             name="update-folder"
-                            title="Update Folder"
+                            title={t("head.modal.update.title")}
                         >
                             <UpdateFolder
                                 folderId={ folderId }
@@ -134,7 +138,7 @@ export default function Main(props: { masterPassword: string, folderId: string, 
 
                         <Modal
                             name="delete-folder"
-                            title="Delete Folder"
+                            title={t("head.modal.delete.title")}
                         >
                             <DeleteFolder
                                 folderId={ folderId }

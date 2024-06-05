@@ -1,13 +1,18 @@
 import { useEffect, useState, useRef } from "react"
+import { useTranslation } from "react-i18next"
+
+import { IPassword } from "@interfaces/password"
 import { updatePasswordSort } from "@logic/password"
 
-import Password from "@component/Content/Password/Password"
+import Password from "@component/Pages/Password/Password"
 
 export default function Main(props: { passwords: any, folderId: string, masterPassword: string, onPasswordUpdate: Function, onPasswordDelete: Function }) {
 
     const { passwords, folderId, masterPassword, onPasswordUpdate, onPasswordDelete } = props
 
-    const [ passwordList, setPasswordList ] = useState(null)
+    const { t } = useTranslation("password")
+
+    const [ passwordList, setPasswordList ] = useState<IPassword[]>([])
 
     const dragPassword = useRef(0)
     const draggedOverPassword = useRef(0)
@@ -49,9 +54,7 @@ export default function Main(props: { passwords: any, folderId: string, masterPa
 
             { passwords && passwords.length === 0 && (
                 <div className="bg-white dark:bg-black/10 border p-5 border-darker/10 dark:border-white/5 rounded-[4px] w-fit">
-                    <p>
-                        No passwords found. Click on "<strong>New Password</strong>" to create new one!
-                    </p>
+                    <p dangerouslySetInnerHTML={{ __html: t("empty") }} />
                 </div>
             )}
 

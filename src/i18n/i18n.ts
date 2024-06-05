@@ -26,12 +26,16 @@ i18n
       
       en: {
         globals: english.globals,
-        folder: english.folder
+        home: english.home,
+        folder: english.folder,
+        password: english.password
       },
 
       es: {
         globals: spanish.globals,
-        folder: english.folder
+        home: spanish.home,
+        folder: spanish.folder,
+        password: spanish.password
       }
 
     },

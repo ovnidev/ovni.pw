@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react"
-
 import { getSettingsList, updateSettings } from "@logic/settings"
 import { getAlphabetList } from "@logic/alphabet"
-
+import { ISettings } from "@interfaces/index"
 import Toggle from "@component/UI/Form/Toggle"
 import Select from "@component/UI/Form/Select"
 import Input from "@component/UI/Form/Input"
 
 export default function Main() {
 
-    const [ settings, setSettings ] = useState(null)
+    const [ settings, setSettings ] = useState<ISettings[]>([])
 
-    const onSettingChange = (sid, value) => {
+    const onSettingChange = (sid: string, value: any) => {
         updateSettings(sid, value)
     }
 
@@ -45,7 +44,7 @@ export default function Main() {
                         { setting.type === 'toggle' && (
                             <Toggle
                                 sid={ setting.sid }
-                                isChecked={ setting.value }
+                                isChecked={ setting.value as boolean }
                                 onToggle={ onSettingChange }
                             />
                         )}
@@ -54,7 +53,7 @@ export default function Main() {
                             <Select
                                 sid={ setting.sid }
                                 options={ getAlphabetList }
-                                selected={ setting.value }
+                                selected={ setting.value as string }
                                 onSelect={ onSettingChange }
                             />
                         )}

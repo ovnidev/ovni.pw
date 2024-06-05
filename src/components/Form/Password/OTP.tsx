@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react"
-
 import { getSetting } from "@logic/settings"
 import { getAlphabet, getAlphabetByIdentifier, getAlphabetList } from "@logic/alphabet"
 import { genPassword, copyToClipboard } from "@logic/utils"
-
+import { IAlphabet } from "@interfaces/index"
 import Info from "@component/UI/Global/Info"
 
 export default function Main(props: { masterPassword: string }) {
 
     const { masterPassword } = props
 
-    const [ alphabetList, setAlphabetList ] = useState(null)
+    const [ alphabetList, setAlphabetList ] = useState<IAlphabet[]>([])
     const [ password, setPassword ] = useState('')
     const [ showPassword, setShowPassword ] = useState(false)
     const [ passCopied, setPassCopied ] = useState(false)
-    const [ defaultAlphabet, setDefaultAlphabet ] = useState('')
 
     const [ form, setForm ] = useState({
         name: '',
@@ -48,7 +46,6 @@ export default function Main(props: { masterPassword: string }) {
         const getSettingDefaultAlphabet = getAlphabetByIdentifier(settingDefaultAlphabet.value)
 
         setShowPassword(settingShowPassword.value)
-        setDefaultAlphabet(getSettingDefaultAlphabet.aid)
 
         setForm({ ...form, name: '', identifier: '', alphabet: getSettingDefaultAlphabet.aid, length: settingDefaultLength.value })
         setPassword('')

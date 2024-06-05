@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import { genPassword, copyToClipboard } from "@logic/utils"
 import { openModal } from "@logic/modal"
@@ -27,6 +28,8 @@ export default function Main(props:
     }) {
 
     let { index, passwordData, masterPassword, onPasswordUpdate, onPasswordDelete, onPasswordDragStart, onPasswordDragEnter, onPasswordDragEnd } = props
+
+    const { t } = useTranslation("password")
 
     const [ password, setPassword ] = useState('')
     const [ passCopied, setPassCopied ] = useState(false)
@@ -90,7 +93,7 @@ export default function Main(props:
                     <button
                         className="button update"
                         onClick={ () => openModal("update-password-" + passwordData.pid) }
-                        name="Update Password"
+                        name={t("head.button.update")}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="align-middle mt-[-4px] inline-block mr-2 icon icon-tabler icons-tabler-outline icon-tabler-lock-cog">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -110,7 +113,7 @@ export default function Main(props:
                     <button
                         className="button delete"
                         onClick={ () => openModal("delete-password-" + passwordData.pid) }
-                        name="Delete Password"
+                        name={t("head.button.delete")}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="align-middle mt-[-4px] inline-block mr-2 icon icon-tabler icons-tabler-outline icon-tabler-lock-x">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -152,7 +155,7 @@ export default function Main(props:
 
             <Modal
                 name={ `update-password-${ passwordData.pid }` }
-                title="Update Password"
+                title={t("modal.update.title")}
             >
                 <UpdatePassword
                     passwordId={ passwordData.pid }
@@ -163,7 +166,7 @@ export default function Main(props:
 
             <Modal
                 name={ `delete-password-${ passwordData.pid }` }
-                title="Delete Password"
+                title={t("modal.delete.title")}
             >
                 <DeletePassword
                     passwordId={ passwordData.pid }

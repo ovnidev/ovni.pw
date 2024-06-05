@@ -5,9 +5,12 @@ import { openModal } from "@logic/modal"
 import Logo from "@component/UI/Logo/Logo"
 import Modal from "@component/UI/Modal/Modal"
 import ThemeToggle from "@component/UI/Theme/Toggle"
+import Language from "@component/UI/Language/Menu"
 import CreateFolder from "@component/Form/Folder/Create"
 import FolderList from "@component/Sidebar/FolderList"
 import GenerateOTP from "@component/Form/Password/OTP"
+
+import "@style/sidebar.css"
 
 export default function Main(props: {
     folders: any,
@@ -148,6 +151,8 @@ export default function Main(props: {
                     )}
 
                     <ThemeToggle />
+
+                    <Language />
 
                 </div>
 

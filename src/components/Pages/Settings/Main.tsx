@@ -1,7 +1,9 @@
 import { useState } from "react"
 
-import Sidebar from "@component/Content/Settings/Sidebar"
-import Settings from "@component/Content/Settings/Page"
+import Sidebar from "@component/Pages/Settings/Sidebar"
+import Settings from "@component/Pages/Settings/Page"
+
+import "@style/settings.css"
 
 export default function Main(props: { masterPassword: string, onImportData: Function, onResetData: Function }) {
 

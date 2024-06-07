@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { closeModal } from "@logic/modal"
 import { createPassword } from "@logic/password"
 import { getSetting } from "@logic/settings"
-import { getAlphabet, getAlphabetByIdentifier, getAlphabetList } from "@logic/alphabet"
+import { getAlphabet, getAlphabetList } from "@logic/alphabet"
 import { genPassword, copyToClipboard } from "@logic/utils"
 import { IAlphabet } from "@interfaces/index"
 import Info from "@component/UI/Global/Info"
@@ -65,23 +65,24 @@ export default function Main(props: { folderId: string, masterPassword: string, 
     }
 
     const getSettingData = () => {
-
         const settingShowPassword = getSetting('default-show-passwords')
         const settingDefaultLength = getSetting('default-password-length')
         const settingDefaultAlphabet = getSetting('default-alphabet')
-        const getSettingDefaultAlphabet = getAlphabetByIdentifier(settingDefaultAlphabet.value)
-
         setShowPassword(settingShowPassword.value)
-
-        setForm({ ...form, name: '', identifier: '', alphabet: getSettingDefaultAlphabet.aid, length: settingDefaultLength.value })
-        
+        setForm({ ...form, name: '', identifier: '', alphabet: settingDefaultAlphabet.value, length: settingDefaultLength.value })
     }
 
     useEffect(() => {
         const alphabets: IAlphabet[] = getAlphabetList()
         setAlphabetList(alphabets)
         getSettingData()
-    }, [ folderId ])
+    }, [])
+
+    if(alphabetList.length === 0) return (
+        <div className="body">
+            {t("modal.no_alphabets")}
+        </div>
+    )
 
     return (
         <>

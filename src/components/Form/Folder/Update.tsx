@@ -28,6 +28,7 @@ export default function Main(props: { folderId: string, onUpdate: Function }) {
     }
 
     const getFolderData = () => {
+        if(!folderId) return
         const folderData = getFolder(folderId)
         setForm({
             name: folderData.name,

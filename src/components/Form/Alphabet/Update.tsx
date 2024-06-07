@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+
 import { updateAlphabet, getAlphabet } from "@logic/alphabet"
 import { closeModal } from "@logic/modal"
 
 import Info from "@component/UI/Global/Info"
 
 export default function Main(props: { alphabetId: string, onUpdate: Function }) {
+
+    const { t } = useTranslation("alphabet")
 
     const { alphabetId, onUpdate } = props
 
@@ -56,11 +60,11 @@ export default function Main(props: { alphabetId: string, onUpdate: Function }) 
 
                         <div>
                             <label htmlFor="name">
-                                Name
+                                {t("form.update.name.label")}
                             </label>
                             <input
                                 type="text"
-                                placeholder="Display name"
+                                placeholder={t("form.update.name.placeholder")}
                                 name="name"
                                 value={ form.name }
                                 onChange={ (event) => setForm({ ...form, name: event.target.value }) }
@@ -70,11 +74,11 @@ export default function Main(props: { alphabetId: string, onUpdate: Function }) 
 
                         <div>
                             <label htmlFor="identifier">
-                                Identifier <Info text="If you change this, the generated passwords will change" />
+                                {t("form.update.identifier.label")} <Info text={t("form.update.identifier.helper")} />
                             </label>
                             <input
                                 type="text"
-                                placeholder="e.g. alphabet-1"
+                                placeholder={t("form.update.identifier.placeholder")}
                                 name="identifier"
                                 value={ form.identifier }
                                 onChange={ (event) => setForm({ ...form, identifier: event.target.value }) }
@@ -86,11 +90,11 @@ export default function Main(props: { alphabetId: string, onUpdate: Function }) 
 
                     <div className="mb-2">
                         <label htmlFor="characters">
-                            Characters <Info text="If you change this, the generated passwords will change" />
+                            {t("form.update.characters.label")} <Info text={t("form.update.characters.helper")} />
                         </label>
                         <input
                             type="text"
-                            placeholder="Characters (e.g. abcdef...)"
+                            placeholder={t("form.update.characters.placeholder")}
                             name="characters"
                             value={ form.characters }
                             onChange={ (event) => setForm({ ...form, characters: event.target.value }) }
@@ -100,10 +104,10 @@ export default function Main(props: { alphabetId: string, onUpdate: Function }) 
 
                     <div>
                         <label htmlFor="description">
-                            Description
+                            {t("form.update.description.label")}
                         </label>
                         <textarea
-                            placeholder="Description"
+                            placeholder={t("form.update.description.placeholder")}
                             name="description"
                             value={ form.description }
                             onChange={ (event) => setForm({ ...form, description: event.target.value }) }
@@ -118,7 +122,7 @@ export default function Main(props: { alphabetId: string, onUpdate: Function }) 
                         type="submit"
                         className="default"
                     >
-                        Update alphabet
+                        {t("form.update.submit")}
                     </button>
                 </div>
 

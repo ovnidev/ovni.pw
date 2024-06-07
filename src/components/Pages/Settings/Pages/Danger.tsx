@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next"
+
 import { removeStorage } from "@logic/storage"
 import { openModal } from "@logic/modal"
 import { showAlert } from "@logic/alert"
@@ -11,6 +13,8 @@ import ResetData from "@component/Form/Settings/Reset"
 
 export default function Main(props: { onResetData: Function }) {
 
+    const { t } = useTranslation("settings")
+
     const { onResetData } = props
 
     const resetData = async () => {
@@ -20,13 +24,13 @@ export default function Main(props: { onResetData: Function }) {
         removeStorage('alphabets')
         removeStorage('settings')
 
-        createDefaultSettings()
         createDefaultAlphabet()
         createDefaultFolder()
+        createDefaultSettings()
 
         onResetData()
 
-        showAlert('Data reset correctly!', 'success', 'restore', 5000)
+        showAlert(t("danger.reset.alert.success"), 'success', 'restore', 5000)
 
     }
 
@@ -34,7 +38,7 @@ export default function Main(props: { onResetData: Function }) {
         <div className="settings-body">
 
             <h2>
-                Danger Zone
+                {t("danger.title")}
             </h2>
             
             <div className="content !p-0">
@@ -42,11 +46,11 @@ export default function Main(props: { onResetData: Function }) {
                 <div className="option">
 
                     <div className="name">
-                        Reset data
+                        {t("danger.reset.name")}
                     </div>
 
                     <div className="description">
-                        All data will be reset
+                        {t("danger.reset.description")}
                     </div>
 
                     <div className="setting !top-[30px]">
@@ -54,13 +58,13 @@ export default function Main(props: { onResetData: Function }) {
                             onClick={ () => openModal("reset-data") }
                             className="btn danger"
                         >
-                            Reset data
+                            {t("danger.reset.submit")}
                         </button>
                     </div>
 
                     <Modal
                         name="reset-data"
-                        title="Reset data"
+                        title={t("danger.reset.modal.title")}
                     >
                         <ResetData
                             onResetData={ resetData }

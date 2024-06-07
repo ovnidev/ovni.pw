@@ -14,30 +14,29 @@ export default defineConfig({
       injectRegister: false,
       pwaAssets: { disabled: false, config: true, htmlPreset: '2023', overrideManifestIcons: true },
       manifest: {
-        name: 'Password Manager',
         short_name: 'OVNI.pw',
         theme_color: '#7C1FF1',
         background_color: '#13151a',
         icons: [
           {
-            src: 'logo.svg',
+            src: 'pwa-64x64.png',
             sizes: '64x64',
-            type: 'image/svg+xml',
+            type: 'image/png',
           },
           {
-            src: 'logo.svg',
+            src: 'pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/svg+xml',
+            type: 'image/png',
           },
           {
-            src: 'logo.svg',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
-            type: 'image/svg+xml',
+            type: 'image/png',
           },
           {
-            src: 'logo.svg',
+            src: 'maskable-icon-512x512.png',
             sizes: '512x512',
-            type: 'image/svg+xml',
+            type: 'image/png',
             purpose: 'maskable',
           },
         ],

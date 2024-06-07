@@ -1,4 +1,5 @@
 import { getStorage, setStorage } from "@logic/storage"
+import { updateSettings, getUserSettings } from "@logic/settings"
 import { generateId } from "@logic/utils"
 
 export const importAlphabets = (data: any) => {
@@ -73,23 +74,10 @@ export const getAlphabetList = () => {
 }
 
 export const getAlphabet = (id: string) => {
-
     const alphabets = getAlphabetList()
-
     for (let index = 0; index < alphabets.length; index++) {
         if(alphabets[index].aid === id) return alphabets[index]
     }
-
-}
-
-export const getAlphabetByIdentifier = (id: string) => {
-
-    const alphabets = getAlphabetList()
-
-    for (let index = 0; index < alphabets.length; index++) {
-        if(alphabets[index].identifier === id) return alphabets[index]
-    }
-
 }
 
 export const createAlphabet = (name: string, identifier: string, characters: string, description: string) => {
@@ -107,6 +95,17 @@ export const createAlphabet = (name: string, identifier: string, characters: str
     alphabets.push(newAlphabet)
 
     setStorage('alphabets', alphabets)
+
+    const settings = getUserSettings()
+
+    for (let index = 0; index < settings.length; index++) {
+        if(settings[index].sid === "default-alphabet") {
+            if(settings[index].value == "") {
+                updateSettings("default-alphabet", newAlphabet.aid)
+            }
+            break
+        }
+    }
     
 }
 
@@ -140,5 +139,12 @@ export const deleteAlphabet = (id: string) => {
     }
 
     setStorage('alphabets', alphabets)
-    
+
+    if(alphabets.length > 0) {
+        updateSettings("default-alphabet", alphabets[0].aid)
+        return
+    }
+
+    updateSettings("default-alphabet", "")
+
 }

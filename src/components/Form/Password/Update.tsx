@@ -29,40 +29,31 @@ export default function Main(props: { passwordId: string, masterPassword: string
     })
     
     const handleSubmit = async (event: any) => {
-
         event.preventDefault()
-
         if(!form.identifier) return
-
         updatePassword(passwordId, form.name, form.identifier, form.alphabet, form.length, form.folder)
-
         onUpdate()
-
         getSettingData()
-
         closeModal('update-password-' + passwordId)
-
     }
 
     const generatePassword = async (alphabetId: string, length: number, identifier: string) => {
         const alphabet = getAlphabet(alphabetId)
+        if(!alphabet) return
         const password = await genPassword(masterPassword, identifier, length, { identifier: alphabet.identifier, characters: alphabet.characters })
         setPassword(password)
     }
 
     const copyPassword = async () => {
-
         copyToClipboard(password)
         setPassCopied(true)
-
         setTimeout(() => {
             setPassCopied(false)
         }, 3000)
-
     }
 
     const getPasswordData = async () => {
-
+        
         const passwordData = getPassword(passwordId)
 
         setForm({
@@ -74,7 +65,6 @@ export default function Main(props: { passwordId: string, masterPassword: string
         })
 
         await generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier)
-
     }
 
     const getSettingData = () => {
@@ -83,13 +73,9 @@ export default function Main(props: { passwordId: string, masterPassword: string
     }
 
     useEffect(() => {
-
         const alphabets = getAlphabetList()
-
         setAlphabetList(alphabets)
-
         getSettingData()
-
     }, [])
 
     useEffect(() => {

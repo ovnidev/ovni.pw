@@ -28,14 +28,18 @@ i18n
         globals: english.globals,
         home: english.home,
         folder: english.folder,
-        password: english.password
+        password: english.password,
+        alphabet: english.alphabet,
+        settings: english.settings
       },
 
       es: {
         globals: spanish.globals,
         home: spanish.home,
         folder: spanish.folder,
-        password: spanish.password
+        password: spanish.password,
+        alphabet: spanish.alphabet,
+        settings: spanish.settings
       }
 
     },

@@ -1,7 +1,9 @@
+export interface IUserSettings {
+    sid: string
+    value: string | number | boolean
+}
+
 export interface ISettings {
     sid: string
-    name: string
-    value: string | number | boolean
     type: string
-    description: string
 }

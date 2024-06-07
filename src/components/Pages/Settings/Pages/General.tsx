@@ -1,77 +1,150 @@
 import { useEffect, useState } from "react"
-import { getSettingsList, updateSettings } from "@logic/settings"
+import { useTranslation } from "react-i18next"
+
+import { getSettings, getUserSettings, updateSettings } from "@logic/settings"
 import { getAlphabetList } from "@logic/alphabet"
-import { ISettings } from "@interfaces/index"
+import { ISettings, IUserSettings } from "@interfaces/index"
 import Toggle from "@component/UI/Form/Toggle"
 import Select from "@component/UI/Form/Select"
 import Input from "@component/UI/Form/Input"
 
 export default function Main() {
 
-    const [ settings, setSettings ] = useState<ISettings[]>([])
+    const { t } = useTranslation("settings")
 
-    const onSettingChange = (sid: string, value: any) => {
+    const [ settings, setSettings ] = useState<ISettings[]>([])
+    const [ userSettings, setUserSettings ] = useState<IUserSettings[]>([])
+
+    const onSettingChange = (sid: string, value: string) => {
         updateSettings(sid, value)
     }
 
     useEffect(() => {
-        setSettings(getSettingsList())
+        setUserSettings(getUserSettings())
+        setSettings(getSettings())
     }, [])
 
     return (
-        <div className="settings-body">
+        <>
+            { settings && settings.length > 0 && (
 
-            <h2>
-                General
-            </h2>
-            
-            <div className="content !p-0">
-                
-                { settings && settings.map((setting) => (
-                    <div
-                        key={ setting.sid }
-                        className="option"
-                    >
+                <div className="settings-body">
 
-                        <div className="name">
-                            { setting.name }
-                        </div>
+                    <h2>
+                        {t("general.title")}
+                    </h2>
 
-                        <div className="description">
-                            { setting.description }
-                        </div>
+                    <div className="content !p-0">
+                        
+                        <div
+                            className="option"
+                        >
 
-                        { setting.type === 'toggle' && (
-                            <Toggle
-                                sid={ setting.sid }
-                                isChecked={ setting.value as boolean }
-                                onToggle={ onSettingChange }
-                            />
-                        )}
+                            <div className="name">
+                                {t("general.length.name")}
+                            </div>
 
-                        { setting.type === 'select' && (
-                            <Select
-                                sid={ setting.sid }
-                                options={ getAlphabetList }
-                                selected={ setting.value as string }
-                                onSelect={ onSettingChange }
-                            />
-                        )}
+                            <div className="description">
+                                {t("general.length.description")}
+                            </div>
 
-                        { (setting.type === 'number' || setting.type === 'text') && (
                             <Input
-                                sid={ setting.sid }
-                                defaultValue={ setting.value }
-                                type={ setting.type }
+                                sid={ settings[0].sid }
+                                defaultValue={ userSettings[0].value as string }
+                                type={ settings[0].type }
                                 onChange={ onSettingChange }
                             />
-                        )}
+
+                        </div>
+
+                        <div
+                            className="option"
+                        >
+
+                            <div className="name">
+                                {t("general.show.name")}
+                            </div>
+
+                            <div className="description">
+                                {t("general.show.description")}
+                            </div>
+
+                            <Toggle
+                                sid={ settings[1].sid }
+                                isChecked={ userSettings[1].value as boolean }
+                                onToggle={ onSettingChange }
+                            />
+
+                        </div>
+
+                        <div
+                            className="option"
+                        >
+
+                            <div className="name">
+                                {t("general.alphabet.name")}
+                            </div>
+
+                            <div className="description">
+                                {t("general.alphabet.description")}
+                            </div>
+
+                            <Select
+                                sid={ settings[2].sid }
+                                options={ getAlphabetList }
+                                selected={ userSettings[2].value as string }
+                                onSelect={ onSettingChange }
+                            />
+
+                        </div>
+
+                        <div
+                            className="option"
+                        >
+
+                            <div className="name">
+                                {t("general.sorting.folder.name")}
+                            </div>
+
+                            <div className="description">
+                                {t("general.sorting.folder.description")}
+                            </div>
+
+                            <Toggle
+                                sid={ settings[3].sid }
+                                isChecked={ userSettings[3].value as boolean }
+                                onToggle={ onSettingChange }
+                            />
+
+                        </div>
+
+                        <div
+                            className="option"
+                        >
+
+                            <div className="name">
+                                {t("general.sorting.password.name")}
+                            </div>
+
+                            <div className="description">
+                                {t("general.sorting.password.description")}
+                            </div>
+
+                            <Toggle
+                                sid={ settings[4].sid }
+                                isChecked={ userSettings[4].value as boolean }
+                                onToggle={ onSettingChange }
+                            />
+
+                        </div>
 
                     </div>
-                ))}
 
-            </div>
+                </div>
 
-        </div>
+            )}
+        
+        </>
+
     )
 }

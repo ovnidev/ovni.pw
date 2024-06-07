@@ -19,6 +19,9 @@ export const password = {
         },
         delete: {
             title: "Delete Password"
+        },
+        otp: {
+            title: "Generate One Time Password"
         }
     },
     

@@ -1,14 +1,17 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import { getAlphabetList, importAlphabets } from "@logic/alphabet"
 import { getFolderList, importFolders } from "@logic/folder"
 import { getAllPasswordList, importPasswords } from "@logic/password"
-import { getSettingsList, importSettings } from "@logic/settings"
+import { getUserSettings, importSettings } from "@logic/settings"
 
 import { showAlert } from "@logic/alert"
 import { encodeData, decodeData, downloadFile } from "@logic/utils"
 
 export default function Main(props: { masterPassword: string, onImportData: Function }) {
+    
+    const { t, i18n } = useTranslation("settings")
 
     const { masterPassword, onImportData } = props
 
@@ -16,7 +19,7 @@ export default function Main(props: { masterPassword: string, onImportData: Func
 
     const exportAllData = async () => {
 
-        const settings = getSettingsList()
+        const settings = getUserSettings()
         const alphabet = getAlphabetList()
         const folders = getFolderList()
         const passwords = getAllPasswordList()
@@ -34,7 +37,7 @@ export default function Main(props: { masterPassword: string, onImportData: Func
 
         downloadFile(encodedData, 'data_' + timestamp + '.ovni', 'application/octet-stream')
 
-        showAlert('Data exported correctly!', 'success', 'database-export', 5000)
+        showAlert(t("export.export.alert.success"), 'success', 'database-export', 5000)
         
     }
 
@@ -62,12 +65,12 @@ export default function Main(props: { masterPassword: string, onImportData: Func
     
                 setFileData('')
     
-                showAlert('Data imported correctly!', 'success', 'database-import', 6000)
+                showAlert(t("export.import.alert.success"), 'success', 'database-import', 6000)
 
             } catch(e) {
 
                 setFileData('')
-                showAlert('Data not imported! Incorrect master password or altered file.', 'error', 'exclamation-circle', 8000)
+                showAlert("export.import.alert.error", 'error', 'exclamation-circle', 8000)
 
             }
 
@@ -79,7 +82,7 @@ export default function Main(props: { masterPassword: string, onImportData: Func
         <div className="settings-body">
 
             <h2>
-                Export / Import
+                {t("export.title")}
             </h2>
             
             <div className="content !p-0">
@@ -87,11 +90,11 @@ export default function Main(props: { masterPassword: string, onImportData: Func
                 <div className="option">
 
                     <div className="name">
-                        Export data
+                        {t("export.export.name")}
                     </div>
 
                     <div className="description">
-                        All data and configuration will be exported
+                        {t("export.export.description")}
                     </div>
 
                     <div className="setting !top-[30px]">
@@ -99,7 +102,7 @@ export default function Main(props: { masterPassword: string, onImportData: Func
                             onClick={ exportAllData }
                             className="btn"
                         >
-                            Export data
+                            {t("export.export.submit")}
                         </button>
                     </div>
 
@@ -108,18 +111,18 @@ export default function Main(props: { masterPassword: string, onImportData: Func
                 <div className="option">
 
                     <div className="name">
-                        Import data
+                        {t("export.import.name")}
                     </div>
 
                     <div className="description">
-                        Select '.ovni' file to restore data
+                        {t("export.import.description")}
                     </div>
 
                     <div className="setting !top-[22px]">
                         <input
                             type="file"
                             accept=".ovni"
-                            className="btn import"
+                            className={ `btn import file_${ i18n.language }` }
                             value={ fileData }
                             onChange={ importAllData }
                         />

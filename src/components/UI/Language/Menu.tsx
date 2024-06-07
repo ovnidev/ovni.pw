@@ -71,7 +71,7 @@ export default function Language() {
                 animate={ controls }
                 initial="hidden"
                 exit="exit"
-                className="absolute bottom-[55px] z-50 left-[8px] bg-white dark:bg-white/5 rounded-md backdrop-blur-md border dark:border-white/10"
+                className="absolute bottom-[100px] z-50 left-[50px] w-max bg-white dark:bg-white/5 rounded-md backdrop-blur-md border dark:border-white/10"
             >
                 <button
                     className="text-[13px] font-inter text-darker hover:bg-darker/5 hover:dark:bg-white/5 duration-300 dark:text-white px-2 py-1 border-b border-darker/10 dark:border-white/10 w-full block"

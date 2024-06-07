@@ -1,10 +1,14 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
+
 import { createAlphabet } from "@logic/alphabet"
 import { closeModal } from "@logic/modal"
 
 import Info from "@component/UI/Global/Info"
 
 export default function Main(props: { onCreate: Function }) {
+
+    const { t } = useTranslation("alphabet")
 
     const { onCreate } = props
 
@@ -39,11 +43,11 @@ export default function Main(props: { onCreate: Function }) {
 
                         <div>
                             <label htmlFor="name">
-                                Name
+                                {t("form.create.name.label")}
                             </label>
                             <input
                                 type="text"
-                                placeholder="Display name"
+                                placeholder={t("form.create.name.placeholder")}
                                 name="name"
                                 value={ form.name }
                                 onChange={ (event) => setForm({ ...form, name: event.target.value }) }
@@ -53,11 +57,11 @@ export default function Main(props: { onCreate: Function }) {
 
                         <div>
                             <label htmlFor="identifier">
-                                Identifier <Info text="This will be used to generate the password." />
+                                {t("form.create.identifier.label")} <Info text={t("form.create.identifier.helper")} />
                             </label>
                             <input
                                 type="text"
-                                placeholder="e.g. alphabet-1"
+                                placeholder={t("form.create.identifier.placeholder")}
                                 name="identifier"
                                 value={ form.identifier }
                                 onChange={ (event) => setForm({ ...form, identifier: event.target.value }) }
@@ -69,11 +73,11 @@ export default function Main(props: { onCreate: Function }) {
 
                     <div className="mb-2">
                         <label htmlFor="characters">
-                            Characters <Info text="This will be used to generate the password." />
+                        {t("form.create.characters.label")} <Info text={t("form.create.characters.helper")} />
                         </label>
                         <input
                             type="text"
-                            placeholder="Characters (e.g. abcdef...)"
+                            placeholder={t("form.create.characters.placeholder")}
                             name="characters"
                             value={ form.characters }
                             onChange={ (event) => setForm({ ...form, characters: event.target.value }) }
@@ -83,10 +87,10 @@ export default function Main(props: { onCreate: Function }) {
 
                     <div>
                         <label htmlFor="description">
-                            Description
+                            {t("form.create.description.label")}
                         </label>
                         <textarea
-                            placeholder="Description"
+                            placeholder={t("form.create.description.placeholder")}
                             name="description"
                             value={ form.description }
                             onChange={ (event) => setForm({ ...form, description: event.target.value }) }
@@ -101,7 +105,7 @@ export default function Main(props: { onCreate: Function }) {
                         type="submit"
                         className="default"
                     >
-                        Create alphabet
+                        {t("form.create.submit")}
                     </button>
                 </div>
 

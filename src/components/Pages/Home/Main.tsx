@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react'
 import Helmet from "react-helmet"
 import { useTranslation } from "react-i18next"
 
-import { createDefaultSettings } from '@logic/settings'
-import { createDefaultFolder, getFolderList } from '@logic/folder'
-import { createDefaultAlphabet } from '@logic/alphabet'
+import { getFolderList } from '@logic/folder'
 
 import Sidebar from '@component/Sidebar/Main'
 import Content from '@component/Pages/Main'
@@ -31,12 +29,6 @@ export default function Main() {
     const updateFolderList = () => {
         setFolderList(getFolderList())
     }
-
-    useEffect(() => {
-        createDefaultSettings()
-        createDefaultFolder()
-        createDefaultAlphabet()
-    }, [])
 
     useEffect(() => { updateFolderList() }, [ folderUpdated, folderDeleted ])
 

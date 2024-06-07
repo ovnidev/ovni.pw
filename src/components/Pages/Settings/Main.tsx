@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import Sidebar from "@component/Pages/Settings/Sidebar"
 import Settings from "@component/Pages/Settings/Page"
@@ -6,6 +7,8 @@ import Settings from "@component/Pages/Settings/Page"
 import "@style/settings.css"
 
 export default function Main(props: { masterPassword: string, onImportData: Function, onResetData: Function }) {
+    
+    const { t } = useTranslation("settings")
 
     const { masterPassword, onImportData, onResetData } = props
 
@@ -17,7 +20,7 @@ export default function Main(props: { masterPassword: string, onImportData: Func
            <div className="head">
 
                 <h2 className="title">
-                    <i className={`align-middle mt-[-3px] mr-2 inline-block icon ti ti-settings`}></i> Settings
+                    <i className={`align-middle mt-[-3px] mr-2 inline-block icon ti ti-settings`}></i> {t("title")}
                 </h2>
 
             </div>

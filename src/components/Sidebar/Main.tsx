@@ -25,7 +25,7 @@ export default function Main(props: {
 
     const [ pageActive, setPageActive ] = useState('home')
 
-    const { t } = useTranslation("folder")
+    const { t } = useTranslation([ "folder", "password" ])
 
     const handleActivePage = (page: string) => {
         onPageClick(page)
@@ -149,10 +149,9 @@ export default function Main(props: {
 
                         </>
                     )}
-
-                    <ThemeToggle />
-
+                    
                     <Language />
+                    <ThemeToggle />
 
                 </div>
 
@@ -167,7 +166,7 @@ export default function Main(props: {
 
             <Modal
                 name="generate-otp"
-                title="Generate One Time Password"
+                title={t('modal.otp.title', { ns: "password" })}
             >
                 <GenerateOTP masterPassword={ masterPassword } />
             </Modal>

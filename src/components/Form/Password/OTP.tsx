@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+
 import { getSetting } from "@logic/settings"
-import { getAlphabet, getAlphabetByIdentifier, getAlphabetList } from "@logic/alphabet"
+import { getAlphabet, getAlphabetList } from "@logic/alphabet"
 import { genPassword, copyToClipboard } from "@logic/utils"
 import { IAlphabet } from "@interfaces/index"
 import Info from "@component/UI/Global/Info"
@@ -8,6 +10,8 @@ import Info from "@component/UI/Global/Info"
 export default function Main(props: { masterPassword: string }) {
 
     const { masterPassword } = props
+
+    const { t } = useTranslation("password")
 
     const [ alphabetList, setAlphabetList ] = useState<IAlphabet[]>([])
     const [ password, setPassword ] = useState('')
@@ -39,28 +43,25 @@ export default function Main(props: { masterPassword: string }) {
     }
 
     const getSettingData = () => {
-
         const settingShowPassword = getSetting('default-show-passwords')
         const settingDefaultLength = getSetting('default-password-length')
         const settingDefaultAlphabet = getSetting('default-alphabet')
-        const getSettingDefaultAlphabet = getAlphabetByIdentifier(settingDefaultAlphabet.value)
-
         setShowPassword(settingShowPassword.value)
-
-        setForm({ ...form, name: '', identifier: '', alphabet: getSettingDefaultAlphabet.aid, length: settingDefaultLength.value })
+        setForm({ ...form, name: '', identifier: '', alphabet: settingDefaultAlphabet.value, length: settingDefaultLength.value })
         setPassword('')
-        
     }
 
     useEffect(() => {
-
         const alphabets = getAlphabetList()
-
         setAlphabetList(alphabets)
-
         getSettingData()
-
     }, [])
+
+    if(alphabetList.length === 0) return (
+        <div className="body">
+            {t("modal.no_alphabets")}
+        </div>
+    )
 
     return (
         <>
@@ -73,11 +74,11 @@ export default function Main(props: { masterPassword: string }) {
 
                         <div>
                             <label htmlFor="identifier">
-                                Identifier <Info text="This will be used to generate the password." />
+                                {t("form.create.identifier.label")} <Info text={t("form.create.identifier.helper")} />
                             </label>
                             <input
                                 type="text"
-                                placeholder="Password identifier"
+                                placeholder={t("form.create.identifier.placeholder")}
                                 name="identifier"
                                 value={ form.identifier }
                                 onChange={ (event) => {
@@ -90,7 +91,7 @@ export default function Main(props: { masterPassword: string }) {
 
                         <div>
                             <label htmlFor="alphabet">
-                                Alphabet <Info text="This will be used to generate the password." />
+                                {t("form.create.alphabet.label")} <Info text={t("form.create.alphabet.helper")} />
                             </label>
                             <select
                                 name="alphabet"
@@ -113,7 +114,7 @@ export default function Main(props: { masterPassword: string }) {
 
                         <div>
                             <label htmlFor="length">
-                                Length
+                                {t("form.create.length.label")}
                             </label>
                             <input
                                 type="number"
@@ -137,13 +138,13 @@ export default function Main(props: { masterPassword: string }) {
 
                     <div className="relative">
                         <label htmlFor="length">
-                            Password
+                            {t("form.create.password.label")}
                         </label>
                         <input
                             type={ showPassword ? 'text' : 'password' }
                             value={ password }
                             className="w-full"
-                            placeholder="Generated password"
+                            placeholder={t("form.create.password.placeholder")}
                             readOnly
                         />
                         <div className="input-buttons label">

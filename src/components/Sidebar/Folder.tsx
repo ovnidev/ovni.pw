@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react"
+import { getSetting } from "@logic/settings"
+
 export default function Main(props:
     {
 
@@ -15,10 +18,19 @@ export default function Main(props:
 
     const { index, folder, folderActive, pageActive, onFolderClick, onFolderDragStart, onFolderDragEnter, onFolderDragEnd } = props
 
+    const [ dragActive, setDragActive ] = useState(false)
+
+    const getSettingData = () => {
+        const setting = getSetting('enable-folder-sorting')
+        setDragActive(setting.value)
+    }
+
+    useEffect(() => { getSettingData() })
+
     return (
         <li
             key={ folder.fid }
-            draggable={ true }
+            draggable={ dragActive }
             onDragStart={ () => onFolderDragStart(index) }
             onDragEnter={ () => onFolderDragEnter(index) }
             onDragEnd={ () => onFolderDragEnd() }

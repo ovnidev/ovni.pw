@@ -22,7 +22,9 @@ export default function Main(props: { folders: any, pageActive: string, onFolder
         updateFolderSort(foldersClone)
     }
 
-    useEffect(() => { setFolderList(getFolderList()) }, [ folders ])
+    useEffect(() => {
+        setFolderList(getFolderList())
+    }, [ folders ])
 
     return (
         <>

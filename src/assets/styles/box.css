@@ -53,3 +53,7 @@
 .box .body .input-buttons .btn-input i {
     @apply align-middle mt-[-2px] inline-block
 }
+
+.box .body .no-alphabet {
+    @apply bg-rose-500/20 p-3 border border-rose-500 rounded-[4px] text-rose-600 dark:text-rose-400
+}

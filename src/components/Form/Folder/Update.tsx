@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+
 import { updateFolder, getFolder } from "@logic/folder"
 import { closeModal } from "@logic/modal"
 
 export default function Main(props: { folderId: string, onUpdate: Function }) {
 
     const { folderId, onUpdate } = props
+
+    const { t } = useTranslation("folder")
 
     const [ form, setForm ] = useState({
         name: '',
@@ -24,6 +28,7 @@ export default function Main(props: { folderId: string, onUpdate: Function }) {
     }
 
     const getFolderData = () => {
+        if(!folderId) return
         const folderData = getFolder(folderId)
         setForm({
             name: folderData.name,
@@ -41,11 +46,11 @@ export default function Main(props: { folderId: string, onUpdate: Function }) {
                 <div className="body">
 
                     <label htmlFor="name">
-                        Icon
+                        {t("form.update.name.label")}
                     </label>
                     <input
                         type="text"
-                        placeholder="Name"
+                        placeholder={t("form.update.name.placeholder")}
                         name="name"
                         value={ form.name }
                         onChange={ (event) => setForm({ ...form, name: event.target.value }) }
@@ -54,11 +59,11 @@ export default function Main(props: { folderId: string, onUpdate: Function }) {
 
                     <div className="relative">
                         <label htmlFor="icon">
-                            Icon
+                            {t("form.update.icon.label")}
                         </label>
                         <input
                             type="text"
-                            placeholder="Icon name (optional)"
+                            placeholder={t("form.update.icon.placeholder")}
                             name="icon"
                             value={ form.icon }
                             onChange={ (event) => setForm({ ...form, icon: event.target.value }) }
@@ -67,7 +72,7 @@ export default function Main(props: { folderId: string, onUpdate: Function }) {
                             href="https://tabler.io/icons"
                             target="_blank"
                             className="absolute right-[13px] top-[40px] w-[20px]"
-                            title="Search icon"
+                            title={t("form.update.icon.label")}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-search">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -83,7 +88,7 @@ export default function Main(props: { folderId: string, onUpdate: Function }) {
                         type="submit"
                         className="default"
                     >
-                        Save
+                        {t("form.update.submit")}
                     </button>
                 </div>
 

@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import { closeModal } from "@logic/modal"
 import { createPassword } from "@logic/password"
 import { getSetting } from "@logic/settings"
-import { getAlphabet, getAlphabetByIdentifier, getAlphabetList } from "@logic/alphabet"
+import { getAlphabet, getAlphabetList } from "@logic/alphabet"
 import { genPassword, copyToClipboard } from "@logic/utils"
-
+import { IAlphabet } from "@interfaces/index"
 import Info from "@component/UI/Global/Info"
 
 export default function Main(props: { folderId: string, masterPassword: string, onCreate: Function }) {
 
     const { folderId, masterPassword, onCreate } = props
 
-    const [ alphabetList, setAlphabetList ] = useState(null)
+    const { t } = useTranslation("password")
+
+    const [ alphabetList, setAlphabetList ] = useState<IAlphabet[]>([])
     const [ password, setPassword ] = useState('')
     const [ showPassword, setShowPassword ] = useState(false)
     const [ passCopied, setPassCopied ] = useState(false)
-    const [ defaultAlphabet, setDefaultAlphabet ] = useState('')
 
     const [ form, setForm ] = useState({
         name: '',
@@ -63,28 +65,24 @@ export default function Main(props: { folderId: string, masterPassword: string, 
     }
 
     const getSettingData = () => {
-
         const settingShowPassword = getSetting('default-show-passwords')
         const settingDefaultLength = getSetting('default-password-length')
         const settingDefaultAlphabet = getSetting('default-alphabet')
-        const getSettingDefaultAlphabet = getAlphabetByIdentifier(settingDefaultAlphabet.value)
-
         setShowPassword(settingShowPassword.value)
-        setDefaultAlphabet(getSettingDefaultAlphabet.aid)
-
-        setForm({ ...form, name: '', identifier: '', alphabet: getSettingDefaultAlphabet.aid, length: settingDefaultLength.value })
-        
+        setForm({ ...form, name: '', identifier: '', alphabet: settingDefaultAlphabet.value, length: settingDefaultLength.value })
     }
 
     useEffect(() => {
-
-        const alphabets = getAlphabetList()
-
+        const alphabets: IAlphabet[] = getAlphabetList()
         setAlphabetList(alphabets)
-
         getSettingData()
+    }, [])
 
-    }, [ folderId ])
+    if(alphabetList.length === 0) return (
+        <div className="body">
+            {t("modal.no_alphabets")}
+        </div>
+    )
 
     return (
         <>
@@ -97,11 +95,11 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
                         <div>
                             <label htmlFor="name">
-                                Name
+                                {t("form.create.name.label")}
                             </label>
                             <input
                                 type="text"
-                                placeholder="Display name"
+                                placeholder={t("form.create.name.placeholder")}
                                 name="name"
                                 value={ form.name }
                                 onChange={ (event) => {
@@ -113,11 +111,11 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
                         <div>
                             <label htmlFor="identifier">
-                                Identifier <Info text="This will be used to generate the password." />
+                                {t("form.create.identifier.label")} <Info text={t("form.create.identifier.helper")} />
                             </label>
                             <input
                                 type="text"
-                                placeholder="Password identifier"
+                                placeholder={t("form.create.identifier.placeholder")}
                                 name="identifier"
                                 value={ form.identifier }
                                 onChange={ (event) => {
@@ -130,7 +128,7 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
                         <div>
                             <label htmlFor="alphabet">
-                                Alphabet <Info text="This will be used to generate the password." />
+                                {t("form.create.alphabet.label")} <Info text={t("form.create.alphabet.helper")} />
                             </label>
                             <select
                                 name="alphabet"
@@ -153,7 +151,7 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
                         <div>
                             <label htmlFor="length">
-                                Length
+                                {t("form.create.length.label")}
                             </label>
                             <input
                                 type="number"
@@ -177,13 +175,13 @@ export default function Main(props: { folderId: string, masterPassword: string, 
 
                     <div className="relative">
                         <label htmlFor="length">
-                            Password
+                            {t("form.create.password.label")}
                         </label>
                         <input
                             type={ showPassword ? 'text' : 'password' }
                             value={ password }
                             className="w-full"
-                            placeholder="Generated password"
+                            placeholder={t("form.create.password.placeholder")}
                             readOnly
                         />
                         <div className="input-buttons label">
@@ -210,7 +208,7 @@ export default function Main(props: { folderId: string, masterPassword: string, 
                         type="submit"
                         className="default"
                     >
-                        Create password
+                        {t("form.create.submit")}
                     </button>
                 </div>
 

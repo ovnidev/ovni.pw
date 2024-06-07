@@ -1,4 +1,5 @@
 import { getStorage, setStorage } from "@logic/storage"
+import { getAlphabetList } from "@logic/alphabet"
 
 export const importSettings = (data: any) => {
     setStorage('settings', data)
@@ -10,49 +11,65 @@ export const createDefaultSettings = () => {
 
     if(settings) return
 
+    const defaultAlphabet = getAlphabetList()[0].aid
+
     const defaultSettings = [
         {
             sid: 'default-password-length',
-            name: 'Default password length',
-            value: 14,
-            type: 'number',
-            description: 'Default length of generated passwords'
+            value: 14
         },
         {
             sid: 'default-show-passwords',
-            name: 'Default show passwords',
-            value: false,
-            type: 'toggle',
-            description: 'Show generated passwords by default'
+            value: false
         },
         {
             sid: 'default-alphabet',
-            name: 'Default alphabet',
-            value: 'default',
-            type: 'select',
-            description: 'Default alphabet for new generated passwords',
+            value: defaultAlphabet
         },
-        // {
-        //     sid: 'enable-folder-sorting',
-        //     name: 'Enable folder sorting',
-        //     value: true,
-        //     type: 'toggle',
-        //     description: 'Sort folders by dragging them'
-        // },
-        // {
-        //     sid: 'enable-password-sorting',
-        //     name: 'Enable password sorting',
-        //     value: true,
-        //     type: 'toggle',
-        //     description: 'Sort passwords by dragging them'
-        // }
+        {
+            sid: 'enable-folder-sorting',
+            value: true
+        },
+        {
+            sid: 'enable-password-sorting',
+            value: true
+        }
     ]
 
     setStorage('settings', defaultSettings)
 
 }
 
-export const getSettingsList = () => {
+export const getSettings = () => {
+
+    const settings = [
+        {
+            sid: 'default-password-length',
+            type: 'number'
+        },
+        {
+            sid: 'default-show-passwords',
+            type: 'toggle'
+        },
+        {
+            sid: 'default-alphabet',
+            type: 'select'
+        },
+        {
+            sid: 'enable-folder-sorting',
+            type: 'toggle'
+        },
+        {
+            sid: 'enable-password-sorting',
+            type: 'toggle'
+        }
+    ]
+
+    return settings
+
+}
+
+export const getUserSettings = () => {
     const settings = getStorage('settings')
     if(!settings || settings.length === 0) return []
     return settings
@@ -60,7 +77,7 @@ export const getSettingsList = () => {
 
 export const getSetting = (id: string) => {
 
-    const settings = getSettingsList()
+    const settings = getUserSettings()
 
     for (let index = 0; index < settings.length; index++) {
         if(settings[index].sid === id) return settings[index]
@@ -70,7 +87,7 @@ export const getSetting = (id: string) => {
 
 export const updateSettings = (id: string, value: string) => {
 
-    const settings = getSettingsList()
+    const settings = getUserSettings()
 
     for (let index = 0; index < settings.length; index++) {
         if(settings[index].sid === id) {

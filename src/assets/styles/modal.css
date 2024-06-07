@@ -31,7 +31,7 @@ dialog .body input {
 }
 
 dialog .body .input-buttons {
-    @apply absolute top-1/2 right-[8px]
+    @apply absolute top-[53%] right-[8px]
 }
 
 dialog .body .input-buttons .btn-input {

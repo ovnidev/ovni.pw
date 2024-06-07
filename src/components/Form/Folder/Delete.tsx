@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next"
 import { deleteFolder } from "@logic/folder"
 import { closeModal } from "@logic/modal"
 
 export default function Main(props: { folderId: string, onDelete: Function }) {
 
     const { folderId, onDelete } = props
+
+    const { t } = useTranslation("folder")
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
@@ -23,7 +26,7 @@ export default function Main(props: { folderId: string, onDelete: Function }) {
             <form>
 
                 <div className="body">
-                    You're sure? Deleting the folder will also delete all passwords stored in it.
+                    {t("form.delete.body")}
                 </div>
 
                 <div className="footer">
@@ -31,14 +34,14 @@ export default function Main(props: { folderId: string, onDelete: Function }) {
                         className="delete"
                         onClick={ handleSubmit }
                     >
-                        Yes, delete folder!
+                        {t("form.delete.submit")}
                     </button>
 
                     <button
                         onClick={ handleCancel }
                         className="default"
                     >
-                        Cancel
+                        {t("form.delete.cancel")}
                     </button>
                 </div>
 

@@ -1,20 +1,39 @@
 {
-  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
+
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Paths */
     "baseUrl": ".",
     "paths": {
-
-      "@/*": [ "src/*" ],
-
-      "@component/*": [ "src/components/*" ],
-      "@layouts/*": [ "src/layouts/*" ],
-      "@pages/*": [ "src/pages/*" ],
-      "@interfaces/*": [ "src/interfaces/*" ],
-      "@styles/*": [ "src/assets/styles/*" ],
-      "@logic/*": [ "src/logic/*" ]
-
+      "@asset/*": ["src/assets/*"],
+      "@style/*": ["src/assets/styles/*"],
+      "@component/*": ["src/components/*"],
+      "@layout/*": ["src/layouts/*"],
+      "@logic/*": ["src/logic/*"],
+      "@i18n/*": ["src/i18n/*"],
+      "@lang/*": ["src/i18n/langs/*"],
+      "@interfaces/*": ["src/interfaces/*"],
     },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+  },
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

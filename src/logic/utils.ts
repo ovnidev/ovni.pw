@@ -50,7 +50,7 @@ export const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
 }
 
-export const downloadFile = (data, filename, type) => {
+export const downloadFile = (data: string, filename: string, type: string) => {
 	
     var file = new Blob([data], { type: type })
 

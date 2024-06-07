@@ -1,10 +1,13 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { createFolder } from "@logic/folder"
 import { closeModal } from "@logic/modal"
 
 export default function Main(props: { onCreate: Function }) {
 
     const { onCreate } = props
+
+    const { t } = useTranslation("folder")
 
     const [ form, setForm ] = useState({
         name: '',
@@ -32,11 +35,11 @@ export default function Main(props: { onCreate: Function }) {
                 <div className="body">
 
                     <label htmlFor="name">
-                        Name
+                        {t("form.create.name.label")}
                     </label>
                     <input
                         type="text"
-                        placeholder="Display name"
+                        placeholder={t("form.create.name.placeholder")}
                         name="name"
                         value={ form.name }
                         onChange={ (event) => setForm({ ...form, name: event.target.value }) }
@@ -45,11 +48,11 @@ export default function Main(props: { onCreate: Function }) {
 
                     <div className="relative">
                         <label htmlFor="icon">
-                            Icon
+                            {t("form.create.icon.label")}
                         </label>
                         <input
                             type="text"
-                            placeholder="Icon name (optional)"
+                            placeholder={t("form.create.icon.placeholder")}
                             name="icon"
                             value={ form.icon }
                             onChange={ (event) => setForm({ ...form, icon: event.target.value }) }
@@ -58,7 +61,7 @@ export default function Main(props: { onCreate: Function }) {
                             href="https://tabler.io/icons"
                             target="_blank"
                             className="absolute right-[13px] top-[40px] w-[20px]"
-                            title="Search icon"
+                            title={t("form.create.icon.search")}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-search">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -75,7 +78,7 @@ export default function Main(props: { onCreate: Function }) {
                         type="submit"
                         className="default"
                     >
-                        Create folder
+                        {t("form.create.submit")}
                     </button>
                 </div>
 

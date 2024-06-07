@@ -1,6 +1,10 @@
+import { useTranslation } from "react-i18next"
+
 import { closeModal } from "@logic/modal"
 
 export default function Main(props: { onResetData: Function }) {
+
+    const { t } = useTranslation("settings")
 
     const { onResetData } = props
 
@@ -18,9 +22,7 @@ export default function Main(props: { onResetData: Function }) {
     return (
         <>
 
-            <div className="body">
-                Are you sure you want to reset all data?
-            </div>
+            <div className="body" dangerouslySetInnerHTML={{ __html: t("danger.reset.modal.body") }} />
 
             <div className="footer">
 
@@ -28,14 +30,14 @@ export default function Main(props: { onResetData: Function }) {
                     className="delete"
                     onClick={ handleSubmit }
                 >
-                    Reset!
+                    {t("danger.reset.modal.submit")}
                 </button>
 
                 <button
                     onClick={ handleCancel }
                     className="default"
                 >
-                    Cancel
+                    {t("danger.reset.modal.cancel")}
                 </button>
 
             </div>

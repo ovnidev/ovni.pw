@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react"
-
+import { useTranslation } from "react-i18next"
 import { openModal } from "@logic/modal"
 
 import Logo from "@component/UI/Logo/Logo"
 import Modal from "@component/UI/Modal/Modal"
 import ThemeToggle from "@component/UI/Theme/Toggle"
+import Language from "@component/UI/Language/Menu"
 import CreateFolder from "@component/Form/Folder/Create"
 import FolderList from "@component/Sidebar/FolderList"
 import GenerateOTP from "@component/Form/Password/OTP"
+
+import "@style/sidebar.css"
 
 export default function Main(props: {
     folders: any,
@@ -15,13 +18,14 @@ export default function Main(props: {
     onPageClick: Function,
     onFolderClick: Function,
     onFolderCreate: Function,
-    onFolderDelete: string,
-    onFolderUpdate: string
+    onFolderDelete: string
 }) {
 
-    const { folders, masterPassword, onPageClick, onFolderCreate, onFolderClick, onFolderUpdate, onFolderDelete } = props
+    const { folders, masterPassword, onPageClick, onFolderCreate, onFolderClick, onFolderDelete } = props
 
     const [ pageActive, setPageActive ] = useState('home')
+
+    const { t } = useTranslation([ "folder", "password" ])
 
     const handleActivePage = (page: string) => {
         onPageClick(page)
@@ -145,7 +149,8 @@ export default function Main(props: {
 
                         </>
                     )}
-
+                    
+                    <Language />
                     <ThemeToggle />
 
                 </div>
@@ -154,14 +159,14 @@ export default function Main(props: {
 
             <Modal
                 name="create-folder"
-                title="Create new folder"
+                title={t('modal.create.title')}
             >
                 <CreateFolder onCreate={ onFolderCreate } />
             </Modal>
 
             <Modal
                 name="generate-otp"
-                title="Generate One Time Password"
+                title={t('modal.otp.title', { ns: "password" })}
             >
                 <GenerateOTP masterPassword={ masterPassword } />
             </Modal>

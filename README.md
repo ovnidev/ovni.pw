@@ -25,21 +25,21 @@ The website [ovni.pw](https://ovni.pw) only includes an analytics script that do
 
 For added security, you can fork this project for local use or create your own version. In any case, I am not responsible for misuse by derivatives of this project.
 
-## Instalación
+## Instalation
 
-Clona el proyecto e instala las dependencias.
+Clone the project and install the dependencies
 
 ```sh
 npm i
 ```
 
-Ejecuta el entorno de desarrollo
+Run the development environment
 
 ```sh
 npm run dev
 ```
 
-Crea una build del proyecto
+Create a build of the project
 
 ```sh
 npm run build

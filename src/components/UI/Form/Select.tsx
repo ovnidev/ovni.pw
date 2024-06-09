@@ -26,7 +26,7 @@ export default function Main(props: { sid: string, options: any, selected: strin
                 { optionList && optionList.map((opt: any) => (
                     <option
                         key={ opt.aid }
-                        value={ opt.identifier }
+                        value={ opt.aid }
                     >
                         { opt.name }
                     </option>

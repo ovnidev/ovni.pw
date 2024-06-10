@@ -37,13 +37,13 @@ export default function Main(props:
     const [ dragActive, setDragActive ] = useState(false)
     const [ noAlphabet, setNoAlphabet ] = useState(false)
 
-    const generatePassword = async (alphabetId: string, length: number, identifier: string) => {
+    const generatePassword = async (alphabetId: string, length: number, identifier: string, version?: number) => {
         const alphabet = getAlphabet(alphabetId)
         if(!alphabet) {
             setNoAlphabet(true)
             return
         }
-        const password = await genPassword(masterPassword, identifier, length, { identifier: alphabet.identifier, characters: alphabet.characters })
+        const password = await genPassword(masterPassword, identifier, length, { identifier: alphabet.identifier, characters: alphabet.characters }, version)
         setPassword(password)
     }
 
@@ -61,7 +61,7 @@ export default function Main(props:
     const updatePassword = () => {
         onPasswordUpdate()
         passwordData = getPassword(passwordData.pid)
-        generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier)
+        generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier, passwordData.version)
     }
 
     const getSettingData = () => {
@@ -77,7 +77,7 @@ export default function Main(props:
         })()
     }, [])
 
-    useEffect(() => { getSettingData() })
+    useEffect(() => { getSettingData() }, [ passwordData ])
 
     return (
         <div
@@ -181,7 +181,10 @@ export default function Main(props:
                 <UpdatePassword
                     passwordId={ passwordData.pid }
                     masterPassword={ masterPassword }
-                    onUpdate={ updatePassword }
+                    onUpdate={ () => {
+                        updatePassword();
+                        getSettingData();
+                    } }
                 />
             </Modal>
 

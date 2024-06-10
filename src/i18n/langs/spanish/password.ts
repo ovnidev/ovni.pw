@@ -75,6 +75,9 @@ export const password = {
                 label: "Contraseña",
                 placeholder: "Contraseña generada"
             },
+            version: {
+                label: "Version"
+            },
             submit: "Modificar contraseña"
         },
         delete: {

@@ -5,4 +5,5 @@ export interface IPassword {
     alphabet: string
     length: number
     folder: string
+    version: number
 }

@@ -70,6 +70,9 @@ export const password = {
                 label: "Password",
                 placeholder: "Generated Password"
             },
+            version: {
+                label: "Version"
+            },
             submit: "Modify Password"
         },
         delete: {

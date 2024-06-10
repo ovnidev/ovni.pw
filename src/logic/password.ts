@@ -59,7 +59,8 @@ export const createPassword = (name: string, identifier: string, alphabet: strin
         identifier: identifier,
         alphabet: alphabet,
         length: length,
-        folder: folder
+        folder: folder,
+        version: 1
     }
 
     passwords.push(newPassword)
@@ -68,7 +69,7 @@ export const createPassword = (name: string, identifier: string, alphabet: strin
     
 }
 
-export const updatePassword = (id: string, name: string, identifier: string, alphabet: string, length: number, folder: string) => {
+export const updatePassword = (id: string, name: string, identifier: string, alphabet: string, length: number, folder: string, version: number) => {
 
     const passwords = getStorage('passwords')
 
@@ -79,6 +80,7 @@ export const updatePassword = (id: string, name: string, identifier: string, alp
             passwords[index].alphabet = alphabet
             passwords[index].length = length
             passwords[index].folder = folder
+            passwords[index].version = version
             break
         }
     }

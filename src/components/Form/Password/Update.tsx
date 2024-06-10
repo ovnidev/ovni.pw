@@ -25,22 +25,23 @@ export default function Main(props: { passwordId: string, masterPassword: string
         identifier: '',
         alphabet: '',
         length: 14,
-        folder: ''
+        folder: '',
+        version: 1
     })
     
     const handleSubmit = async (event: any) => {
         event.preventDefault()
         if(!form.identifier) return
-        updatePassword(passwordId, form.name, form.identifier, form.alphabet, form.length, form.folder)
+        updatePassword(passwordId, form.name, form.identifier, form.alphabet, form.length, form.folder, form.version)
         onUpdate()
         getSettingData()
         closeModal('update-password-' + passwordId)
     }
 
-    const generatePassword = async (alphabetId: string, length: number, identifier: string) => {
+    const generatePassword = async (alphabetId: string, length: number, identifier: string, version?: number) => {
         const alphabet = getAlphabet(alphabetId)
         if(!alphabet) return
-        const password = await genPassword(masterPassword, identifier, length, { identifier: alphabet.identifier, characters: alphabet.characters })
+        const password = await genPassword(masterPassword, identifier, length, { identifier: alphabet.identifier, characters: alphabet.characters }, version)
         setPassword(password)
     }
 
@@ -62,9 +63,10 @@ export default function Main(props: { passwordId: string, masterPassword: string
             alphabet: passwordData.alphabet,
             length: passwordData.length,
             folder: passwordData.folder,
+            version: passwordData.version ? passwordData.version : 1
         })
 
-        await generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier)
+        await generatePassword(passwordData.alphabet, passwordData.length, passwordData.identifier, passwordData.version)
     }
 
     const getSettingData = () => {
@@ -120,7 +122,7 @@ export default function Main(props: { passwordId: string, masterPassword: string
                                 value={ form.identifier }
                                 onChange={ (event) => {
                                     setForm({ ...form, identifier: event.target.value });
-                                    generatePassword(form.alphabet, form.length, event.target.value); 
+                                    generatePassword(form.alphabet, form.length, event.target.value, form.version); 
                                 }}
                                 required
                             />
@@ -134,7 +136,7 @@ export default function Main(props: { passwordId: string, masterPassword: string
                                 name="alphabet"
                                 onChange={ (event) => {
                                     setForm({ ...form, alphabet: event.target.value });
-                                    generatePassword(event.target.value, form.length, form.identifier);
+                                    generatePassword(event.target.value, form.length, form.identifier, form.version);
                                 }}
                                 value={ form.alphabet }
                             >
@@ -161,11 +163,11 @@ export default function Main(props: { passwordId: string, masterPassword: string
                                 value={ form.length }
                                 onChange={ (event: any) => {
                                     setForm({ ...form, length: parseInt(event.target.value) });
-                                    generatePassword(form.alphabet, event.target.value, form.identifier);
+                                    generatePassword(form.alphabet, event.target.value, form.identifier, form.version);
                                 }}
                                 onKeyUp={ (event: any) => {
                                     setForm({ ...form, length: parseInt(event.target.value) });
-                                    generatePassword(form.alphabet, event.target.value, form.identifier); 
+                                    generatePassword(form.alphabet, event.target.value, form.identifier, form.version); 
                                 }}
                                 required
                             />
@@ -173,30 +175,57 @@ export default function Main(props: { passwordId: string, masterPassword: string
 
                     </div>
 
-                    <div className="relative">
-                        <label htmlFor="length">
-                            {t("form.update.password.label")}
-                        </label>
-                        <input
-                            type={ showPassword ? 'text' : 'password' }
-                            value={ password }
-                            className="w-full"
-                            placeholder={t("form.update.password.placeholder")}
-                            readOnly
-                        />
-                        <div className="input-buttons label">
-                            <span
-                                className="btn-input"
-                                onClick={ () => setShowPassword(!showPassword) }
-                            >
-                                <i className={ `ti ti-${ showPassword ? 'eye' : 'eye-off' }` }></i>
-                            </span>
-                            <span
-                                className={ `btn-input${ passCopied ? ' active' : '' }` }
-                                onClick={ () => copyPassword() }
-                            >
-                                <i className={ `ti ti-${ passCopied ? 'check' : 'copy' }` }></i>
-                            </span>
+                    <div className="mb-2 md:grid grid-cols-6 gap-2">
+
+                        <div className="col-span-5 relative">
+
+                            <label htmlFor="length">
+                                {t("form.update.password.label")}
+                            </label>
+                            <input
+                                type={ showPassword ? 'text' : 'password' }
+                                value={ password }
+                                className="w-full"
+                                placeholder={t("form.update.password.placeholder")}
+                                readOnly
+                            />
+                            <div className="input-buttons label !mt-[-1.5px]">
+                                <span
+                                    className="btn-input"
+                                    onClick={ () => setShowPassword(!showPassword) }
+                                >
+                                    <i className={ `ti ti-${ showPassword ? 'eye' : 'eye-off' }` }></i>
+                                </span>
+                                <span
+                                    className={ `btn-input${ passCopied ? ' active' : '' }` }
+                                    onClick={ () => copyPassword() }
+                                >
+                                    <i className={ `ti ti-${ passCopied ? 'check' : 'copy' }` }></i>
+                                </span>
+                            </div>
+                        
+                        </div>
+
+                        <div className="col-span-1">
+                            <label htmlFor="version">
+                                {t("form.update.version.label")}
+                            </label>
+                            <input
+                                type="number"
+                                name="version"
+                                min={ 1 }
+                                max={ 1000 }
+                                value={ form.version }
+                                onChange={ (event: any) => {
+                                    setForm({ ...form, version: parseInt(event.target.value) });
+                                    generatePassword(form.alphabet, form.length, form.identifier, event.target.value);
+                                }}
+                                onKeyUp={ (event: any) => {
+                                    setForm({ ...form, version: parseInt(event.target.value) });
+                                    generatePassword(form.alphabet, form.length, form.identifier, event.target.value); 
+                                }}
+                                required
+                            />
                         </div>
 
                     </div>

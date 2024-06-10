@@ -4,20 +4,39 @@ declare const sha512: Function
 
 export const generateId = () => Math.random().toString(36).substring(2, 8) + Math.random().toString(36).substring(2, 8)
 
-export const genPassword = async (master: string, identifier: string, length: number, alphabet: { identifier: string, characters: string }): Promise<string> => {
+export const genPassword = async (
+	master: string,
+	identifier: string,
+	length: number,
+	alphabet: {
+		identifier: string,
+		characters: string
+	},
+	version?: number
+	): Promise<string> => {
 
     if(master == '' || identifier == '') return ''
+
+	let versionHash = ''
+
+	if(version && version > 1)
+		versionHash = await createHash('version-' + version)
 
     const masterHash = await createHash(master)
     const identifierHash = await createHash(identifier)
     const alphabetHash = await createHash(alphabet.identifier)
-    const hash = await createHash(masterHash + identifierHash + alphabetHash)
 
-    return createPassword(hash, length, alphabet.characters)
+	let appendHashes = masterHash + identifierHash + alphabetHash
+
+	if(versionHash) appendHashes += versionHash
+
+    const hash = await createHash(appendHashes)
+
+	return await createPassword(hash, length, alphabet.characters)
 
 }
 
-const createPassword = (hash: string, length: number, alphabet: string): string => {
+const createPassword = async (hash: string, length: number, alphabet: string): Promise<string> => {
 
     const seed = randomseed.create(hash)
 

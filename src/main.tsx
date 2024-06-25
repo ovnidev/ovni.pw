@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
+import Helmet from "react-helmet"
 import Home from "@component/Pages/Home/Main"
 
 import { createDefaultSettings } from '@logic/settings'
@@ -20,8 +21,18 @@ createDefaultAlphabet()
 createDefaultFolder()
 createDefaultSettings()
 
+const analytics = {
+  url: import.meta.env.VITE_ANALYTICS_URL,
+  id: import.meta.env.VITE_ANALYTICS_ID
+}
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    {(analytics.url && analytics.id) && (
+      <Helmet>
+        <script defer src={ analytics.url } data-website-id={ analytics.id }></script>
+      </Helmet>
+    )}
     <Home />
   </React.StrictMode>,
 )

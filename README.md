@@ -30,19 +30,19 @@ For added security, you can fork this project for local use or create your own v
 Clone the project and install the dependencies
 
 ```sh
-npm i
+pnpm install
 ```
 
 Run the development environment
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 Create a build of the project
 
 ```sh
-npm run build
+pnpm run build
 ```
 
 ## Contribution

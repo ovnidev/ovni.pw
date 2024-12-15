@@ -9,7 +9,7 @@ import { getFolderCount } from "@logic/folder"
 import { getAlphabetCount } from "@logic/alphabet"
 import { showAlert } from "@logic/alert"
 
-export default function Main(props: { masterPassword: string, onMasterPassword: Function }) {
+export default function Main(props: { masterPassword: string, onMasterPassword: (password: string) => void }) {
 
     const { masterPassword, onMasterPassword } = props
 
@@ -32,7 +32,7 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
     useEffect(() => {
         setPasswordCount(getPasswordCount())
         setFolderCount(getFolderCount())
-        setAlphabetCount(getAlphabetCount())    
+        setAlphabetCount(getAlphabetCount())
     }, [])
 
     return (
@@ -123,7 +123,7 @@ export default function Main(props: { masterPassword: string, onMasterPassword: 
                             {t("buttons.info")}
 
                         </button>
-                        
+
                         <button
                             ria-label={t("buttons.use")}
                             onClick={ () => openModal("use") }

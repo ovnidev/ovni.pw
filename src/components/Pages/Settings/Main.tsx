@@ -6,8 +6,8 @@ import Settings from "@component/Pages/Settings/Page"
 
 import "@style/settings.css"
 
-export default function Main(props: { masterPassword: string, onImportData: Function, onResetData: Function }) {
-    
+export default function Main(props: { masterPassword: string, onImportData: () => void, onResetData: () => void }) {
+
     const { t } = useTranslation("settings")
 
     const { masterPassword, onImportData, onResetData } = props

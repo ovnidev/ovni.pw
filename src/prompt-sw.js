@@ -4,20 +4,12 @@ import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING')
-    self.skipWaiting()
+  if(event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting()
 })
 
 precacheAndRoute(self.__WB_MANIFEST)
 cleanupOutdatedCaches()
 
-/** @type { RegExp[] | undefined } */
-
 let allowlist
-if (import.meta.env.DEV)
-  allowlist = [/^\/$/]
-
-registerRoute(new NavigationRoute(
-  createHandlerBoundToURL('index.html'),
-  { allowlist },
-))
+if(import.meta.env.DEV) allowlist = [/^\/$/]
+registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html'), { allowlist }))
